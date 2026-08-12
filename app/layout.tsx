@@ -3,22 +3,22 @@ import "./globals.css";
 
 export const metadata: Metadata = {
   title:
-    "NovaCore Consulting | Business Strategy, Operations & Digital Transformation",
+    "NewMaster Occupational Health & Safety | Integrated Workplace Health, Safety & Wellbeing Solutions",
   description:
-    "NovaCore Consulting helps African businesses scale through strategy, operational excellence, and digital transformation. Practical execution. Measurable results.",
-  authors: [{ name: "AkiliNova Technologies" }],
+    "NewMaster Occupational Health & Safety provides integrated occupational health, workplace safety, environmental, training, compliance, wellbeing, and consulting solutions for safer, healthier, and more productive workplaces across Africa.",
+  authors: [{ name: "NewMaster Occupational Health & Safety" }],
   openGraph: {
-    title: "Business & Digital Transformation Consulting | NovaCore",
+    title: "NewMaster Occupational Health & Safety | Safer Workplaces. Healthier People. Stronger Organizations.",
     description:
-      "We help organizations clarify strategy, optimize operations, and execute digital transformation across Africa.",
-    url: "https://novacore-agency.netlify.app",
-    siteName: "NovaCore Consulting",
+      "Integrated occupational health, safety, environmental, training, compliance, wellbeing, consulting, and digital solutions for modern workplaces across Africa.",
+    url: "https://newmasterhse.com",
+    siteName: "NewMaster Occupational Health & Safety",
     images: [
       {
         url: "/og-image.jpg",
         width: 1200,
         height: 630,
-        alt: "NovaCore Consulting – Business & Digital Transformation",
+        alt: "NewMaster Occupational Health & Safety – Safer Workplaces. Healthier People. Stronger Organizations.",
       },
     ],
     locale: "en_US",
@@ -26,9 +26,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "NovaCore Consulting",
+    title: "NewMaster Occupational Health & Safety",
     description:
-      "Strategy, operations, and digital transformation for ambitious African businesses.",
+      "Integrated occupational health, safety, environmental, and wellbeing solutions for safer, healthier workplaces.",
     images: ["/og-image.jpg"],
   },
   robots: {
