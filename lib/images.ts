@@ -8,8 +8,7 @@ export const images = {
   aboutHandshake: "/images/about-handshake.jpg",
   industries:
     "https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=1200&h=1200&fit=crop",
-  whyChooseUs:
-    "https://images.unsplash.com/photo-1556484687-3063617719ea?w=1200&h=900&fit=crop",
+  whyChooseUs: "/images/news/stronger-safety-culture.jpg",
   contact:
     "https://images.unsplash.com/photo-1600880292089-90a7e086ee0c?w=1200&h=900&fit=crop",
   institute:
@@ -38,12 +37,10 @@ export const images = {
     "https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=1200&h=900&fit=crop",
   fireTraining:
     "https://images.unsplash.com/photo-1594737625785-a6cbdabd333c?w=1200&h=800&fit=crop",
-  newsEmergency:
-    "https://images.unsplash.com/photo-1517594422361-5eeb8ae3a27d?w=1200&h=800&fit=crop",
+  newsEmergency: "/images/news/workplace-emergency-preparedness.jpg",
   newsMedical:
     "https://images.unsplash.com/photo-1666214280557-f1b5022eb634?w=1200&h=800&fit=crop",
-  newsCulture:
-    "https://images.unsplash.com/photo-1556484687-3063617719ea?w=1200&h=800&fit=crop",
+  newsCulture: "/images/news/stronger-safety-culture.jpg",
   newsRisk:
     "https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=1200&h=800&fit=crop",
   newsAssessment:

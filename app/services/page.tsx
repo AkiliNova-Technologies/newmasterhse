@@ -15,6 +15,10 @@ export default function ServicesPage() {
       <Header />
       <PageBanner
         title="Our Services"
+        description="Integrated occupational health, workplace safety, environmental consulting and practical training solutions."
+        image="/images/banners/services-safety-professional.jpg"
+        imageAlt="Workplace safety professional inspecting an industrial environment"
+        priority
         breadcrumbs={[
           { label: "Home", href: "/" },
           { label: "Services" },

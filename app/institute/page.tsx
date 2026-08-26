@@ -23,6 +23,10 @@ export default function InstitutePage() {
       <Header />
       <PageBanner
         title="Institute"
+        description="Practical workplace health and safety training for workers, supervisors and organisational teams."
+        image="/images/banners/institute-training.jpg"
+        imageAlt="Employees taking part in professional workplace training"
+        priority
         breadcrumbs={[
           { label: "Home", href: "/" },
           { label: "Institute" },

@@ -15,6 +15,10 @@ export default function SpecialisedServicesPage() {
       <Header />
       <PageBanner
         title="Specialised Services"
+        description="On-site medical, occupational hygiene and workforce wellbeing support designed around demanding operations."
+        image="/images/banners/specialised-medical-support.jpg"
+        imageAlt="Medical professional providing workplace health support"
+        priority
         breadcrumbs={[
           { label: "Home", href: "/" },
           { label: "Specialised Services" },

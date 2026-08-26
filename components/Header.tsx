@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { Menu, X, Phone, Mail, ChevronDown } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { CONTACT } from "@/lib/site";
@@ -30,6 +31,7 @@ const navigation: NavItem[] = [
 ];
 
 export default function Header() {
+  const pathname = usePathname();
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
@@ -75,12 +77,24 @@ export default function Header() {
     };
   }, [isOpen, isMobile]);
 
-  const linkClass = (scrolled: boolean) =>
+  const isActive = (href: string) => {
+    if (href === "/") return pathname === "/";
+    return pathname === href || pathname.startsWith(`${href}/`);
+  };
+
+  const isItemActive = (item: NavItem) =>
+    isActive(item.href) || Boolean(item.children?.some((child) => isActive(child.href)));
+
+  const isConfirmed = (value: string) => Boolean(value && !value.startsWith("[Insert"));
+
+  const linkClass = (scrolled: boolean, active: boolean) =>
     cn(
       "font-medium transition-colors relative group text-sm xl:text-base whitespace-nowrap",
-      scrolled
-        ? "text-navy hover:text-orange-500"
-        : "text-white/90 hover:text-white",
+      active
+        ? "text-orange-500"
+        : scrolled
+          ? "text-navy hover:text-orange-500"
+          : "text-white/90 hover:text-white",
     );
 
   return (
@@ -119,15 +133,20 @@ export default function Header() {
               {navigation.map((item) =>
                 item.children ? (
                   <div key={item.name} className="relative group">
-                    <Link href={item.href} className={linkClass(isScrolled)}>
+                    <Link
+                      href={item.href}
+                      className={linkClass(isScrolled, isItemActive(item))}
+                      aria-current={isActive(item.href) ? "page" : undefined}
+                    >
                       <span className="inline-flex items-center gap-1">
                         {item.name}
                         <ChevronDown className="w-3.5 h-3.5" aria-hidden />
                       </span>
                       <span
                         className={cn(
-                          "absolute -bottom-1 left-0 w-0 h-0.5 transition-all group-hover:w-full",
-                          isScrolled ? "bg-orange-500" : "bg-white",
+                          "absolute -bottom-1 left-0 h-0.5 transition-all group-hover:w-full",
+                          isItemActive(item) ? "w-full bg-orange-500" : "w-0",
+                          !isItemActive(item) && (isScrolled ? "bg-orange-500" : "bg-white"),
                         )}
                       />
                     </Link>
@@ -137,7 +156,13 @@ export default function Header() {
                           <Link
                             key={child.name}
                             href={child.href}
-                            className="block px-4 py-2 text-sm text-navy hover:text-orange-500 hover:bg-gray-50"
+                            className={cn(
+                              "block border-l-2 px-4 py-2 text-sm transition-colors",
+                              isActive(child.href)
+                                ? "border-orange-500 bg-orange-50 text-orange-600"
+                                : "border-transparent text-navy hover:bg-gray-50 hover:text-orange-500",
+                            )}
+                            aria-current={isActive(child.href) ? "page" : undefined}
                           >
                             {child.name}
                           </Link>
@@ -149,13 +174,15 @@ export default function Header() {
                   <Link
                     key={item.name}
                     href={item.href}
-                    className={linkClass(isScrolled)}
+                    className={linkClass(isScrolled, isItemActive(item))}
+                    aria-current={isActive(item.href) ? "page" : undefined}
                   >
                     {item.name}
                     <span
                       className={cn(
-                        "absolute -bottom-1 left-0 w-0 h-0.5 transition-all group-hover:w-full",
-                        isScrolled ? "bg-orange-500" : "bg-white",
+                        "absolute -bottom-1 left-0 h-0.5 transition-all group-hover:w-full",
+                        isItemActive(item) ? "w-full bg-orange-500" : "w-0",
+                        !isItemActive(item) && (isScrolled ? "bg-orange-500" : "bg-white"),
                       )}
                     />
                   </Link>
@@ -216,11 +243,14 @@ export default function Header() {
                         <button
                           type="button"
                           className={cn(
-                            "w-full flex items-center justify-between font-medium py-2.5 sm:py-3 px-2 rounded-md text-base sm:text-lg",
-                            isScrolled
-                              ? "text-navy hover:text-orange-500 hover:bg-gray-50"
-                              : "text-white/90 hover:text-white hover:bg-white/10",
+                            "w-full flex items-center justify-between border-l-2 font-medium py-2.5 sm:py-3 px-3 rounded-r-md text-base sm:text-lg",
+                            isItemActive(item)
+                              ? "border-orange-500 bg-orange-500/10 text-orange-500"
+                              : isScrolled
+                                ? "border-transparent text-navy hover:text-orange-500 hover:bg-gray-50"
+                                : "border-transparent text-white/90 hover:text-white hover:bg-white/10",
                           )}
+                          aria-current={isActive(item.href) ? "page" : undefined}
                           aria-expanded={openSubmenu === item.name}
                           onClick={() =>
                             setOpenSubmenu(
@@ -241,11 +271,14 @@ export default function Header() {
                             <Link
                               href={item.href}
                               className={cn(
-                                "block py-2 px-2 rounded-md text-sm",
-                                isScrolled
-                                  ? "text-navy/80 hover:text-orange-500"
-                                  : "text-white/80 hover:text-white",
+                                "block border-l-2 py-2 px-3 rounded-r-md text-sm",
+                                isActive(item.href)
+                                  ? "border-orange-500 bg-orange-500/10 text-orange-500"
+                                  : isScrolled
+                                    ? "border-transparent text-navy/80 hover:text-orange-500"
+                                    : "border-transparent text-white/80 hover:text-white",
                               )}
+                              aria-current={isActive(item.href) ? "page" : undefined}
                               onClick={() => setIsOpen(false)}
                             >
                               Overview
@@ -255,11 +288,14 @@ export default function Header() {
                                 key={child.name}
                                 href={child.href}
                                 className={cn(
-                                  "block py-2 px-2 rounded-md text-sm",
-                                  isScrolled
-                                    ? "text-navy/80 hover:text-orange-500"
-                                    : "text-white/80 hover:text-white",
+                                  "block border-l-2 py-2 px-3 rounded-r-md text-sm",
+                                  isActive(child.href)
+                                    ? "border-orange-500 bg-orange-500/10 text-orange-500"
+                                    : isScrolled
+                                      ? "border-transparent text-navy/80 hover:text-orange-500"
+                                      : "border-transparent text-white/80 hover:text-white",
                                 )}
+                                aria-current={isActive(child.href) ? "page" : undefined}
                                 onClick={() => setIsOpen(false)}
                               >
                                 {child.name}
@@ -272,11 +308,14 @@ export default function Header() {
                       <Link
                         href={item.href}
                         className={cn(
-                          "block font-medium transition-colors py-2.5 sm:py-3 px-2 rounded-md text-base sm:text-lg",
-                          isScrolled
-                            ? "text-navy hover:text-orange-500 hover:bg-gray-50"
-                            : "text-white/90 hover:text-white hover:bg-white/10",
+                          "block border-l-2 font-medium transition-colors py-2.5 sm:py-3 px-3 rounded-r-md text-base sm:text-lg",
+                          isItemActive(item)
+                            ? "border-orange-500 bg-orange-500/10 text-orange-500"
+                            : isScrolled
+                              ? "border-transparent text-navy hover:text-orange-500 hover:bg-gray-50"
+                              : "border-transparent text-white/90 hover:text-white hover:bg-white/10",
                         )}
+                        aria-current={isActive(item.href) ? "page" : undefined}
                         onClick={() => setIsOpen(false)}
                       >
                         {item.name}
@@ -305,7 +344,8 @@ export default function Header() {
                   isScrolled ? "border-gray-200" : "border-white/20",
                 )}
               >
-                <div className="flex flex-col space-y-3">
+                {(isConfirmed(CONTACT.phone) || isConfirmed(CONTACT.email)) && <div className="flex flex-col space-y-3">
+                  {isConfirmed(CONTACT.phone) && (
                   <p
                     className={cn(
                       "flex items-center gap-3 py-2 px-2 text-sm sm:text-base",
@@ -315,6 +355,8 @@ export default function Header() {
                     <Phone className="w-4 h-4 sm:w-5 sm:h-5" />
                     <span>{CONTACT.phone}</span>
                   </p>
+                  )}
+                  {isConfirmed(CONTACT.email) && (
                   <p
                     className={cn(
                       "flex items-center gap-3 py-2 px-2 rounded-md text-sm sm:text-base break-all",
@@ -324,7 +366,9 @@ export default function Header() {
                     <Mail className="w-4 h-4 sm:w-5 sm:h-5" />
                     <span>{CONTACT.email}</span>
                   </p>
+                  )}
                 </div>
+                }
 
               </div>
             </div>

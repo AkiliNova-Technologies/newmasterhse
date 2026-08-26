@@ -1,89 +1,83 @@
-"use client";
-
+import Image from "next/image";
 import Link from "next/link";
-import { useState, useEffect } from "react";
 
 interface PageBannerProps {
   title: string;
-  breadcrumbs: {
+  description?: string;
+  image?: string;
+  imageAlt?: string;
+  priority?: boolean;
+  breadcrumbs?: {
     label: string;
     href?: string;
   }[];
 }
 
-export default function PageBanner({ title, breadcrumbs }: PageBannerProps) {
-  const [isMobile, setIsMobile] = useState(false);
+const DEFAULT_BANNER_IMAGE = "/images/banners/services-safety-professional.jpg";
 
-  useEffect(() => {
-    const checkDevice = () => {
-      setIsMobile(window.innerWidth < 640);
-    };
-    
-    checkDevice();
-    window.addEventListener('resize', checkDevice);
-    return () => window.removeEventListener('resize', checkDevice);
-  }, []);
-
+export default function PageBanner({
+  title,
+  description,
+  image = DEFAULT_BANNER_IMAGE,
+  imageAlt = "",
+  priority = false,
+  breadcrumbs = [],
+}: PageBannerProps) {
   return (
-    <section className="relative bg-white py-16 sm:py-20 lg:py-32 pt-24 overflow-hidden">
-      {/* Dotted Pattern Background - Preserved */}
-      <div className="absolute inset-0 dotted-pattern opacity-30 pointer-events-none" />
+    <section className="relative isolate flex min-h-[300px] items-center overflow-hidden bg-navy pt-16 sm:min-h-[360px] sm:pt-20 lg:min-h-[420px]">
+      <Image
+        src={image}
+        alt={imageAlt}
+        fill
+        priority={priority}
+        className="-z-20 object-cover"
+        sizes="100vw"
+      />
+      <div className="absolute inset-0 -z-10 bg-gradient-to-r from-navy/95 via-navy/80 to-navy/65" />
+      <div className="absolute inset-0 -z-10 bg-black/15" />
+      <div className="absolute inset-0 -z-10 dotted-pattern opacity-20 mix-blend-overlay" />
 
-      <div className="relative w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        {/* Title - Responsive typography */}
-        <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-orange-500 mb-4 sm:mb-5 lg:mb-6 leading-tight">
-          {title}
-        </h1>
+      <div className="w-full max-w-7xl mx-auto px-4 py-14 sm:px-6 sm:py-16 lg:px-8 lg:py-20">
+        <div className="max-w-3xl">
+          {breadcrumbs.length > 0 && (
+            <nav aria-label="Breadcrumb" className="mb-5 sm:mb-6">
+              <ol className="flex flex-wrap items-center gap-x-2 gap-y-1 text-xs text-white/75 sm:text-sm">
+                {breadcrumbs.map((crumb, index) => (
+                  <li key={`${crumb.label}-${index}`} className="flex items-center gap-2">
+                    {crumb.href ? (
+                      <Link
+                        href={crumb.href}
+                        className="rounded-sm transition-colors hover:text-orange-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-400"
+                      >
+                        {crumb.label}
+                      </Link>
+                    ) : (
+                      <span className="font-medium text-orange-300" aria-current="page">
+                        {crumb.label}
+                      </span>
+                    )}
+                    {index < breadcrumbs.length - 1 && (
+                      <span className="text-white/45" aria-hidden="true">
+                        /
+                      </span>
+                    )}
+                  </li>
+                ))}
+              </ol>
+            </nav>
+          )}
 
-        {/* Breadcrumbs - Responsive layout */}
-        <nav className="flex flex-wrap items-center justify-center gap-1.5 sm:gap-2 text-xs sm:text-sm px-2">
-          {breadcrumbs.map((crumb, index) => (
-            <span key={index} className="flex items-center gap-1.5 sm:gap-2">
-              {crumb.href ? (
-                <Link
-                  href={crumb.href}
-                  className="text-navy hover:text-orange-500 transition-colors py-1 px-0.5 sm:py-0.5"
-                >
-                  {isMobile && crumb.label.length > 12 
-                    ? crumb.label.substring(0, 10) + "..." 
-                    : crumb.label}
-                </Link>
-              ) : (
-                <span className="text-orange-500 font-medium whitespace-nowrap">
-                  {isMobile && crumb.label.length > 15 
-                    ? crumb.label.substring(0, 12) + "..." 
-                    : crumb.label}
-                </span>
-              )}
-              
-              {/* Separator */}
-              {index < breadcrumbs.length - 1 && (
-                <span className="text-navy/70 text-xs sm:text-sm">/</span>
-              )}
-            </span>
-          ))}
-        </nav>
-
-        {/* Mobile breadcrumbs alternative - For very long breadcrumb paths */}
-        {isMobile && breadcrumbs.length > 3 && (
-          <div className="mt-3 text-xs text-navy/50">
-            <span className="inline-flex items-center gap-1">
-              <span>←</span>
-              <Link href={breadcrumbs[breadcrumbs.length - 2]?.href || "/"} className="hover:text-orange-500">
-                Back
-              </Link>
-            </span>
-          </div>
-        )}
+          <h1 className="max-w-3xl text-3xl font-bold leading-tight text-white sm:text-4xl md:text-5xl lg:text-6xl">
+            {title}
+          </h1>
+          {description && (
+            <p className="mt-4 max-w-2xl text-sm leading-relaxed text-white/85 sm:text-base lg:text-lg">
+              {description}
+            </p>
+          )}
+          <div className="mt-6 h-1 w-16 rounded-full bg-orange-500 sm:w-20" aria-hidden="true" />
+        </div>
       </div>
-
-      {/* Bottom Navy Bar - Responsive height */}
-      <div className="absolute bottom-0 left-0 right-0 h-10 sm:h-12 bg-navy diagonal-pattern" />
-      
-      {/* Mobile decorative element - Subtle, preserves theme */}
-      {isMobile && (
-        <div className="absolute top-1/4 left-0 w-16 h-16 bg-orange-500/5 rounded-full blur-2xl -z-10" />
-      )}
     </section>
   );
 }

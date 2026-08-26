@@ -1,9 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { Send } from "lucide-react";
-import { useState } from "react";
-import { CONTACT, FOOTER_BLURB, INSTITUTE_NAME } from "@/lib/site";
+import { FOOTER_BLURB, INSTITUTE_NAME } from "@/lib/site";
 
 const companyLinks = [
   { name: "About", href: "/about" },
@@ -27,20 +25,6 @@ const resourceLinks = [
 ];
 
 export default function Footer() {
-  const [email, setEmail] = useState("");
-  const [status, setStatus] = useState("");
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!email.includes("@")) {
-      setStatus("Please enter a valid email address.");
-      return;
-    }
-    setStatus(
-      "Thank you. Newsletter storage is not yet connected. Please use the contact page to reach NewMaster Health and Safety.",
-    );
-    setEmail("");
-  };
 
   return (
     <footer className="bg-navy text-white overflow-hidden">
@@ -63,7 +47,7 @@ export default function Footer() {
       </div>
 
       <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-14 lg:py-16 diagonal-pattern">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 gap-8 sm:gap-10 lg:gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-8 gap-8 sm:gap-10 lg:gap-8">
           <div className="lg:col-span-2 text-left">
             <Link href="/" className="inline-flex items-center gap-3 mb-6">
               <div className="w-10 h-10 sm:w-12 sm:h-12 bg-white rounded-full flex items-center justify-center flex-shrink-0">
@@ -96,7 +80,7 @@ export default function Footer() {
             </ul>
           </div>
 
-          <div>
+          <div className="lg:col-span-2">
             <h4 className="text-base sm:text-lg font-bold mb-5 sm:mb-6">Services</h4>
             <ul className="space-y-3 sm:space-y-4">
               {serviceLinks.map((link) => (
@@ -128,7 +112,7 @@ export default function Footer() {
             </ul>
           </div>
 
-          <div>
+          <div className="lg:col-span-2">
             <h4 className="text-base sm:text-lg font-bold mb-5 sm:mb-6">Training</h4>
             <ul className="space-y-3 sm:space-y-4 mb-6">
               <li>
@@ -140,48 +124,28 @@ export default function Footer() {
                 </Link>
               </li>
             </ul>
-            <form onSubmit={handleSubmit} className="relative">
-              <label htmlFor="footer-email" className="sr-only">
-                Email address
-              </label>
-              <input
-                id="footer-email"
-                type="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                placeholder="Email address"
-                required
-                className="w-full px-4 py-2.5 sm:py-3 pr-14 bg-white/10 border border-white/20 rounded-full text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all text-sm sm:text-base"
-              />
-              <button
-                type="submit"
-                className="absolute right-1.5 top-1.5 sm:right-1 sm:top-1 w-8 h-8 sm:w-10 sm:h-10 bg-orange-500 rounded-full flex items-center justify-center text-white hover:bg-orange-600 transition-colors"
-                aria-label="Submit email"
-              >
-                <Send className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
-              </button>
-            </form>
-            {status && (
-              <p className="text-white/70 text-xs mt-3 leading-relaxed">{status}</p>
-            )}
           </div>
-        </div>
-
-        <div className="mt-10 pt-8 border-t border-white/10 grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm text-white/60">
-          <p>
-            {CONTACT.kampalaLabel}: {CONTACT.kampalaAddress}
-          </p>
-          <p>
-            {CONTACT.mbararaLabel}: {CONTACT.mbararaAddress}
-          </p>
         </div>
       </div>
 
       <div className="bg-orange-500">
-        <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5 sm:py-6">
-          <p className="text-white text-center text-xs sm:text-sm">
-            Copyright © {new Date().getFullYear()} NewMaster Health and Safety. All Rights Reserved.
-          </p>
+        <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-5">
+          <div className="flex flex-col sm:flex-row items-center justify-between gap-2 sm:gap-4 text-center sm:text-left">
+            <p className="text-white text-xs sm:text-sm font-medium">
+              Copyright © {new Date().getFullYear()} NewMaster Health and Safety. All Rights Reserved.
+            </p>
+            <p className="text-white/90 text-xs sm:text-sm">
+              Developed by {" "}
+              <Link
+                href="https://albertwatbin.vercel.app"
+                target="_blank"
+                rel="noreferrer"
+                className="font-semibold underline-offset-2 hover:underline"
+              >
+                Albert Watbin
+              </Link>
+            </p>
+          </div>
         </div>
       </div>
     </footer>

@@ -16,6 +16,10 @@ export default function AboutPage() {
       <Header />
       <PageBanner
         title="About Us"
+        description="Meet the purpose, values and multidisciplinary approach behind NewMaster Health and Safety."
+        image="/images/banners/about-african-team.jpg"
+        imageAlt="African professionals collaborating in a modern workplace"
+        priority
         breadcrumbs={[
           { label: "Home", href: "/" },
           { label: "About Us" },

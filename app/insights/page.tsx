@@ -1,7 +1,6 @@
 import Header from "@/components/Header";
 import PageBanner from "@/components/PageBanner";
 import Footer from "@/components/Footer";
-import Newsletter from "@/components/Newsletter";
 import Link from "next/link";
 import { FileText, Headphones, ArrowRight } from "lucide-react";
 
@@ -17,6 +16,10 @@ export default function InsightsPage() {
       <Header />
       <PageBanner
         title="Insights"
+        description="Explore NewMaster news and podcast resources for healthier people and safer workplaces."
+        image="/images/banners/insights-workplace.jpg"
+        imageAlt="Modern workplace and construction safety environment"
+        priority
         breadcrumbs={[
           { label: "Home", href: "/" },
           { label: "Insights" },
@@ -70,7 +73,6 @@ export default function InsightsPage() {
           </div>
         </div>
       </section>
-      <Newsletter />
       <Footer />
     </main>
   );

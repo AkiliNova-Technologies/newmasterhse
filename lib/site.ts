@@ -86,12 +86,12 @@ export const CONTACT = {
   kampalaLabel: "Kampala / Kasangati",
   kampalaAddress: "[Insert Kampala Office Address]",
   mbararaLabel: "Mbarara",
-  mbararaAddress: "[Insert Mbarara Office Address]",
-  phone: "[Insert Main Phone Number]",
+  mbararaAddress: "Mbadifa Building",
+  phone: "+256756097022",
   whatsapp: "[Insert WhatsApp Number]",
   email: "[Insert Business Email]",
-  hoursWeekday: "Monday – Friday: [Insert Hours]",
-  hoursSaturday: "Saturday: [Insert Hours]",
+  hoursWeekday: "Monday – Friday: 8am - 5pm",
+  hoursSaturday: "",
 } as const;
 
 export const CONTACT_REASONS = [

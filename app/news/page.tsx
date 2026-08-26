@@ -1,7 +1,6 @@
 import Header from "@/components/Header";
 import PageBanner from "@/components/PageBanner";
 import Footer from "@/components/Footer";
-import Newsletter from "@/components/Newsletter";
 import NewsGrid from "./NewsGrid";
 
 export const metadata = {
@@ -16,13 +15,16 @@ export default function NewsPage() {
       <Header />
       <PageBanner
         title="News"
+        description="Educational articles and practical guidance on occupational health, workplace safety and prevention."
+        image="/images/banners/news-workplace-safety.jpg"
+        imageAlt="Workplace safety and emergency preparedness equipment"
+        priority
         breadcrumbs={[
           { label: "Home", href: "/" },
           { label: "News" },
         ]}
       />
       <NewsGrid />
-      <Newsletter />
       <Footer />
     </main>
   );

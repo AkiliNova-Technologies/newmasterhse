@@ -1,7 +1,6 @@
 import Header from "@/components/Header";
 import PageBanner from "@/components/PageBanner";
 import Footer from "@/components/Footer";
-import Newsletter from "@/components/Newsletter";
 import PodcastsGrid from "./PodcastsGrid";
 
 export const metadata = {
@@ -16,13 +15,16 @@ export default function PodcastsPage() {
       <Header />
       <PageBanner
         title="Podcasts"
+        description="Conversations on occupational medicine, safety leadership, compliance and worker wellbeing."
+        image="/images/banners/podcasts-discussion.jpg"
+        imageAlt="Professional microphone prepared for a workplace health and safety discussion"
+        priority
         breadcrumbs={[
           { label: "Home", href: "/" },
           { label: "Podcasts" },
         ]}
       />
       <PodcastsGrid />
-      <Newsletter />
       <Footer />
     </main>
   );
