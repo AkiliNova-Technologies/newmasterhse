@@ -2,14 +2,12 @@ import Header from "@/components/Header";
 import Hero from "@/components/Hero";
 import About from "@/components/About";
 import Services from "@/components/Services";
-import Process from "@/components/Process";
-import CaseStudies from "@/components/CaseStudies";
 import WhyChooseUs from "@/components/WhyChooseUs";
-import Team from "@/components/Team";
-import Testimonials from "@/components/Testimonials";
+import SpecialisedServices from "@/components/SpecialisedServices";
+import Process from "@/components/Process";
+import InstitutePreview from "@/components/InstitutePreview";
 import Blog from "@/components/Blog";
 import FAQ from "@/components/FAQ";
-import Newsletter from "@/components/Newsletter";
 import Footer from "@/components/Footer";
 
 export default function Home() {
@@ -19,14 +17,12 @@ export default function Home() {
       <Hero />
       <About />
       <Services />
-      <Process />
-      <CaseStudies />
       <WhyChooseUs />
-      <Team />
-      <Testimonials />
+      <SpecialisedServices />
+      <Process />
+      <InstitutePreview />
       <Blog />
       <FAQ />
-      <Newsletter /> 
       <Footer />
     </main>
   );

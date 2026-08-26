@@ -13,12 +13,10 @@ interface PageBannerProps {
 
 export default function PageBanner({ title, breadcrumbs }: PageBannerProps) {
   const [isMobile, setIsMobile] = useState(false);
-  const [isTablet, setIsTablet] = useState(false);
 
   useEffect(() => {
     const checkDevice = () => {
       setIsMobile(window.innerWidth < 640);
-      setIsTablet(window.innerWidth >= 640 && window.innerWidth < 1024);
     };
     
     checkDevice();

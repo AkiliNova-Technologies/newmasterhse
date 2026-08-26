@@ -16,12 +16,10 @@ interface RelatedInsight {
 
 export default function RelatedInsights({ insights }: { insights: RelatedInsight[] }) {
   const [isMobile, setIsMobile] = useState(false);
-  const [isTablet, setIsTablet] = useState(false);
 
   useEffect(() => {
     const checkDevice = () => {
       setIsMobile(window.innerWidth < 768);
-      setIsTablet(window.innerWidth >= 768 && window.innerWidth < 1024);
     };
     
     checkDevice();
@@ -37,7 +35,7 @@ export default function RelatedInsights({ insights }: { insights: RelatedInsight
           <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-navy mb-3 sm:mb-4 leading-tight">
             Related{" "}
             <span className="text-orange-500 italic block sm:inline">
-              Insights
+              News
             </span>
           </h2>
           <p className="text-gray-600 text-sm sm:text-base px-2">
@@ -50,7 +48,7 @@ export default function RelatedInsights({ insights }: { insights: RelatedInsight
           {insights.map((insight, index) => (
             <Link
               key={insight.slug}
-              href={`/insights/${insight.slug}`}
+              href={`/news/${insight.slug}`}
               className="group bg-white rounded-2xl overflow-hidden shadow-card hover:shadow-card-hover transition-all duration-300 h-full flex flex-col"
             >
               {/* Image Container - Responsive height */}
@@ -103,10 +101,10 @@ export default function RelatedInsights({ insights }: { insights: RelatedInsight
         {isMobile && insights.length >= 2 && (
           <div className="flex justify-center mt-8">
             <Link
-              href="/insights"
+              href="/news"
               className="inline-flex items-center justify-center px-6 py-3 bg-navy text-white font-semibold rounded-full hover:bg-navy-light transition-colors text-sm w-full max-w-xs"
             >
-              View All Insights
+              View All News
               <ArrowRight className="w-4 h-4 ml-2" />
             </Link>
           </div>

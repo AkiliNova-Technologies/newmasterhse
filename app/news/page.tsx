@@ -2,26 +2,26 @@ import Header from "@/components/Header";
 import PageBanner from "@/components/PageBanner";
 import Footer from "@/components/Footer";
 import Newsletter from "@/components/Newsletter";
-import CaseStudiesGrid from "./CaseStudiesGrid";
+import NewsGrid from "./NewsGrid";
 
 export const metadata = {
-  title: "Case Studies | NovaCore Consulting",
+  title: "News",
   description:
-    "Explore our completed consulting projects and see how we've helped organizations achieve measurable results.",
+    "Workplace health and safety articles from NewMaster Health and Safety covering emergency preparedness, medical examinations, safety culture and risk assessment.",
 };
 
-export default function CaseStudiesPage() {
+export default function NewsPage() {
   return (
     <main className="min-h-screen">
       <Header />
       <PageBanner
-        title="Case Studies"
+        title="News"
         breadcrumbs={[
           { label: "Home", href: "/" },
-          { label: "Case Studies" },
+          { label: "News" },
         ]}
       />
-      <CaseStudiesGrid />
+      <NewsGrid />
       <Newsletter />
       <Footer />
     </main>
