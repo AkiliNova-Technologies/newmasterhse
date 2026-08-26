@@ -2,7 +2,7 @@
 
 export const images = {
   hero:
-    "https://images.unsplash.com/photo-1584515933487-779824d29309?w=1600&h=900&fit=crop",
+    "https://images.unsplash.com/photo-1531482615713-2afd69097998?w=1200&h=900&fit=crop",
   aboutTeam:
     "https://images.unsplash.com/photo-1531482615713-2afd69097998?w=1200&h=900&fit=crop",
   aboutHandshake: "/images/about-handshake.jpg",
