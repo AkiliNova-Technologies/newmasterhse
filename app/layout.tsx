@@ -1,36 +1,44 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import { SITE_DESCRIPTION, SITE_TAGLINE, SITE_URL } from "@/lib/site";
 
 export const metadata: Metadata = {
-  title:
-    "NovaCore Consulting | Business Strategy, Operations & Digital Transformation",
-  description:
-    "NovaCore Consulting helps African businesses scale through strategy, operational excellence, and digital transformation. Practical execution. Measurable results.",
-  authors: [{ name: "AkiliNova Technologies" }],
+  metadataBase: new URL(SITE_URL),
+
+  title: {
+    default:
+      "NewMaster Health and Safety | Workplace Health, Safety & Wellbeing Solutions",
+    template: "%s | NewMaster Health and Safety",
+  },
+
+  description: SITE_DESCRIPTION,
+
+  authors: [{ name: "NewMaster Health and Safety" }],
+
   openGraph: {
-    title: "Business & Digital Transformation Consulting | NovaCore",
-    description:
-      "We help organizations clarify strategy, optimize operations, and execute digital transformation across Africa.",
-    url: "https://novacore-agency.netlify.app",
-    siteName: "NovaCore Consulting",
+    title: `NewMaster Health and Safety | ${SITE_TAGLINE}`,
+    description: SITE_DESCRIPTION,
+    url: SITE_URL,
+    siteName: "NewMaster Health and Safety",
     images: [
       {
-        url: "/og-image.jpg",
+        url: "/images/about-handshake.jpg",
         width: 1200,
         height: 630,
-        alt: "NovaCore Consulting – Business & Digital Transformation",
+        alt: "NewMaster Health and Safety professionals supporting safer African workplaces",
       },
     ],
-    locale: "en_US",
+    locale: "en_UG",
     type: "website",
   },
+
   twitter: {
     card: "summary_large_image",
-    title: "NovaCore Consulting",
-    description:
-      "Strategy, operations, and digital transformation for ambitious African businesses.",
-    images: ["/og-image.jpg"],
+    title: "NewMaster Health and Safety",
+    description: SITE_DESCRIPTION,
+    images: ["/images/about-handshake.jpg"],
   },
+
   robots: {
     index: true,
     follow: true,

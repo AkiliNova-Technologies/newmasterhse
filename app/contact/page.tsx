@@ -4,9 +4,9 @@ import Footer from "@/components/Footer";
 import Contact from "@/components/Contact";
 
 export const metadata = {
-  title: "Contact Us | NewMaster Occupational Health & Safety",
+  title: "Contact Us",
   description:
-    "Get in touch with NewMaster Occupational Health & Safety. Request a consultation, book a workplace audit, schedule medical examinations, or discuss your organization's health and safety needs.",
+    "Contact NewMaster Health and Safety in Kampala/Kasangati or Mbarara to request a quotation, book occupational medical services, arrange training or discuss onsite medical support.",
 };
 
 export default function ContactPage() {
@@ -15,6 +15,10 @@ export default function ContactPage() {
       <Header />
       <PageBanner
         title="Contact Us"
+        description="Talk to our team about occupational health services, workplace training, safety audits or specialised support."
+        image="/images/banners/contact-consultation.jpg"
+        imageAlt="African professionals discussing workplace health and safety support"
+        priority
         breadcrumbs={[
           { label: "Home", href: "/" },
           { label: "Contact Us" },

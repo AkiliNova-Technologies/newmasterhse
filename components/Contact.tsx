@@ -1,315 +1,344 @@
 "use client";
 
-import { JSX, useState, useEffect } from "react";
-import { Phone, Mail } from "lucide-react";
+import { useState } from "react";
+import {
+  Building2,
+  Clock3,
+  Loader2,
+  Mail,
+  MapPin,
+  MessageCircle,
+  Phone,
+  Send,
+} from "lucide-react";
+import { CONTACT } from "@/lib/site";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Textarea } from "@/components/ui/textarea";
+
+const serviceOptions = [
+  "Occupational Health Services",
+  "Safety & Environmental Consulting",
+  "Training & Certification",
+  "Specialised Services",
+  "NewMaster Institute of Health & Safety",
+  "Corporate Health Programmes",
+  "Other",
+] as const;
+
+type FormData = {
+  fullName: string;
+  email: string;
+  phone: string;
+  organisation: string;
+  service: string;
+  subject: string;
+  message: string;
+};
+
+type FormErrors = Partial<Record<keyof FormData, string>>;
+
+const initialFormData: FormData = {
+  fullName: "",
+  email: "",
+  phone: "",
+  organisation: "",
+  service: "",
+  subject: "",
+  message: "",
+};
+
+function isConfirmed(value: string) {
+  return Boolean(value && !value.startsWith("[Insert"));
+}
 
 export default function Contact() {
-  const [formData, setFormData] = useState({
-    firstName: "",
-    lastName: "",
-    email: "",
-    phone: "",
-    subject: "",
-    message: "",
-  });
+  const [formData, setFormData] = useState<FormData>(initialFormData);
+  const [errors, setErrors] = useState<FormErrors>({});
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [status, setStatus] = useState("");
 
-  const [isMobile, setIsMobile] = useState(false);
-
-  useEffect(() => {
-    const checkMobile = () => {
-      setIsMobile(window.innerWidth < 768);
-    };
-    
-    checkMobile();
-    window.addEventListener('resize', checkMobile);
-    return () => window.removeEventListener('resize', checkMobile);
-  }, []);
-
-  const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
-    });
+  const updateField = (field: keyof FormData, value: string) => {
+    setFormData((current) => ({ ...current, [field]: value }));
+    setErrors((current) => ({ ...current, [field]: undefined }));
+    setStatus("");
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    console.log("Form submitted:", formData);
+  const validate = () => {
+    const nextErrors: FormErrors = {};
+
+    if (!formData.fullName.trim()) nextErrors.fullName = "Please enter your full name.";
+    if (!formData.email.trim()) {
+      nextErrors.email = "Please enter your email address.";
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
+      nextErrors.email = "Please enter a valid email address.";
+    }
+    if (!formData.service) nextErrors.service = "Please select the service you are interested in.";
+    if (!formData.subject.trim()) nextErrors.subject = "Please enter a subject.";
+    if (!formData.message.trim()) {
+      nextErrors.message = "Please tell us how NewMaster can help.";
+    } else if (formData.message.trim().length < 20) {
+      nextErrors.message = "Please provide at least 20 characters so we can understand your enquiry.";
+    }
+
+    setErrors(nextErrors);
+    return Object.keys(nextErrors).length === 0;
   };
+
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    setStatus("");
+
+    if (!validate()) return;
+
+    setIsSubmitting(true);
+    await new Promise((resolve) => window.setTimeout(resolve, 500));
+    setIsSubmitting(false);
+    setStatus(
+      "Contact form delivery is not yet connected. Please contact NewMaster directly using the confirmed details provided on this page once available.",
+    );
+  };
+
+  const contactMethods = [
+    isConfirmed(CONTACT.phone)
+      ? { label: "Phone", value: CONTACT.phone, icon: Phone }
+      : null,
+    isConfirmed(CONTACT.email)
+      ? { label: "Email", value: CONTACT.email, icon: Mail }
+      : null,
+    isConfirmed(CONTACT.whatsapp)
+      ? { label: "WhatsApp", value: CONTACT.whatsapp, icon: MessageCircle }
+      : null,
+  ].filter(Boolean) as { label: string; value: string; icon: typeof Phone }[];
+
+  const businessHours = [CONTACT.hoursWeekday, CONTACT.hoursSaturday].filter(isConfirmed);
 
   return (
-    <section className="relative bg-gray-light py-16 sm:py-20 lg:py-28 overflow-hidden">
-      {/* Dotted Pattern - Preserved */}
-      <div className="absolute inset-0 dotted-pattern opacity-30 pointer-events-none" />
-
-      <div className="relative w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Section Header - Responsive */}
-        <div className="text-center max-w-2xl mx-auto mb-12 sm:mb-14 lg:mb-16">
-          <div className="flex items-center justify-center gap-2 sm:gap-3 text-navy/70 text-xs sm:text-sm font-medium tracking-wide mb-3 sm:mb-4">
-            <span className="w-6 sm:w-8 h-0.5 bg-orange-500" />
-            Contact Us
-            <span className="w-6 sm:w-8 h-0.5 bg-orange-500" />
-          </div>
-
-          <h2 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold leading-tight">
-            <span className="text-navy block sm:inline">Let&apos;s Make Your Workplace</span>
-            <span className="text-orange-500 italic block sm:inline sm:ml-2">
-              Safer
-            </span>
+    <section className="relative overflow-hidden bg-gray-light py-16 sm:py-20 lg:py-24">
+      <div className="absolute inset-0 dotted-pattern opacity-20 pointer-events-none" />
+      <div className="relative mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div className="mx-auto mb-10 max-w-3xl text-center sm:mb-14">
+          <div className="section-label mb-4 justify-center text-navy/70">Start a Conversation</div>
+          <h2 className="text-2xl font-bold leading-tight text-navy sm:text-3xl lg:text-4xl">
+            Tell us what your workplace needs
           </h2>
+          <p className="mt-4 text-sm leading-relaxed text-gray-600 sm:text-base">
+            Request a quotation, arrange occupational medical services or training, or discuss a
+            practical health and safety solution for your organisation.
+          </p>
         </div>
 
-        {/* Content Grid - Stack on mobile, side-by-side on desktop */}
-        <div className="flex flex-col lg:grid lg:grid-cols-3 gap-6 lg:gap-8">
-          {/* Contact Form - Full width on mobile */}
-          <div className="lg:col-span-2 order-2 lg:order-1">
-            <form onSubmit={handleSubmit} className="space-y-5 sm:space-y-6">
-              {/* Name Fields - Stack on mobile, side-by-side on tablet+ */}
-              <div className="flex flex-col sm:grid sm:grid-cols-2 gap-5 sm:gap-6">
-                {/* First Name */}
-                <div>
-                  <label
-                    htmlFor="firstName"
-                    className="block text-xs sm:text-sm font-medium text-navy mb-1.5 sm:mb-2"
-                  >
-                    First Name *
-                  </label>
-                  <input
-                    type="text"
-                    id="firstName"
-                    name="firstName"
-                    value={formData.firstName}
-                    onChange={handleChange}
-                    placeholder="Ex. Alex"
-                    required
-                    className="w-full px-4 py-2.5 sm:py-3 bg-white border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all text-sm sm:text-base"
-                  />
-                </div>
-
-                {/* Last Name */}
-                <div>
-                  <label
-                    htmlFor="lastName"
-                    className="block text-xs sm:text-sm font-medium text-navy mb-1.5 sm:mb-2"
-                  >
-                    Last Name *
-                  </label>
-                  <input
-                    type="text"
-                    id="lastName"
-                    name="lastName"
-                    value={formData.lastName}
-                    onChange={handleChange}
-                    placeholder="Ex. Kintu"
-                    required
-                    className="w-full px-4 py-2.5 sm:py-3 bg-white border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all text-sm sm:text-base"
-                  />
-                </div>
-              </div>
-
-              {/* Contact Fields */}
-              <div className="flex flex-col sm:grid sm:grid-cols-2 gap-5 sm:gap-6">
-                {/* Email */}
-                <div>
-                  <label
-                    htmlFor="email"
-                    className="block text-xs sm:text-sm font-medium text-navy mb-1.5 sm:mb-2"
-                  >
-                    Email *
-                  </label>
-                  <input
-                    type="email"
-                    id="email"
-                    name="email"
-                    value={formData.email}
-                    onChange={handleChange}
-                    placeholder="example@gmail.com"
-                    required
-                    className="w-full px-4 py-2.5 sm:py-3 bg-white border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all text-sm sm:text-base"
-                  />
-                </div>
-
-                {/* Phone */}
-                <div>
-                  <label
-                    htmlFor="phone"
-                    className="block text-xs sm:text-sm font-medium text-navy mb-1.5 sm:mb-2"
-                  >
-                    Phone Number *
-                  </label>
-                  <input
-                    type="tel"
-                    id="phone"
-                    name="phone"
-                    value={formData.phone}
-                    onChange={handleChange}
-                    placeholder="Enter Phone Number"
-                    required
-                    className="w-full px-4 py-2.5 sm:py-3 bg-white border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all text-sm sm:text-base"
-                  />
-                </div>
-              </div>
-
-              {/* Subject */}
-              <div>
-                <label
-                  htmlFor="subject"
-                  className="block text-xs sm:text-sm font-medium text-navy mb-1.5 sm:mb-2"
-                >
-                  Service Required *
-                </label>
-                <input
-                  type="text"
-                  id="subject"
-                  name="subject"
-                  value={formData.subject}
-                  onChange={handleChange}
-                  placeholder="e.g. Workplace Audit, Medical Examination, Training, etc."
-                  required
-                  className="w-full px-4 py-2.5 sm:py-3 bg-white border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all text-sm sm:text-base"
-                />
-              </div>
-
-              {/* Message */}
-              <div>
-                <label
-                  htmlFor="message"
-                  className="block text-xs sm:text-sm font-medium text-navy mb-1.5 sm:mb-2"
-                >
-                  Tell Us About Your Needs *
-                </label>
-                <textarea
-                  id="message"
-                  name="message"
-                  value={formData.message}
-                  onChange={handleChange}
-                  placeholder="Describe your organization and the occupational health and safety support you are looking for..."
-                  required
-                  rows={isMobile ? 5 : 6}
-                  className="w-full px-4 py-2.5 sm:py-3 bg-white border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all resize-none text-sm sm:text-base"
-                />
-              </div>
-
-              {/* Submit Button - Full width on mobile */}
-              <button
-                type="submit"
-                className="inline-flex items-center justify-center px-6 sm:px-8 py-3 sm:py-4 bg-orange-500 text-white font-semibold rounded-full hover:bg-orange-600 transition-colors shadow-lg shadow-orange-500/30 text-sm sm:text-base w-full sm:w-auto"
-              >
-                Send Message
-              </button>
-            </form>
-          </div>
-
-          {/* Contact Info Card - Full width on mobile */}
-          <div className="order-1 lg:order-2">
-            <div className="bg-navy rounded-2xl p-6 sm:p-8 text-white diagonal-pattern h-full">
-              {/* Address */}
-              <div className="mb-6 sm:mb-8">
-                <h3 className="text-lg sm:text-xl font-bold mb-3 sm:mb-4">
-                  Our Office
-                </h3>
-                <p className="text-white/70 text-sm sm:text-base">
-                  [PLACEHOLDER — Full Office Address]
+        <div className="grid items-start gap-8 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)] lg:gap-10">
+          <aside className="overflow-hidden rounded-2xl bg-navy text-white shadow-card">
+            <div className="diagonal-pattern p-6 sm:p-8 lg:p-10">
+              <div className="mb-8">
+                <p className="mb-2 text-sm font-semibold uppercase tracking-[0.16em] text-orange-400">
+                  Contact Information
+                </p>
+                <h3 className="text-2xl font-bold sm:text-3xl">NewMaster Health and Safety</h3>
+                <p className="mt-3 text-sm leading-relaxed text-white/75">
+                  Integrated workplace health, safety, environmental, medical and training support
+                  for organisations across Uganda and the wider African market.
                 </p>
               </div>
 
-              {/* Contact */}
-              <div className="mb-6 sm:mb-8">
-                <h3 className="text-lg sm:text-xl font-bold mb-3 sm:mb-4">
-                  Contact
-                </h3>
-                <div className="space-y-2.5 sm:space-y-3">
-                  <a
-                    href="tel:[PLACEHOLDER]"
-                    className="flex items-center gap-2 text-white/70 hover:text-orange-500 transition-colors text-sm sm:text-base py-1.5"
-                  >
-                    <Phone className="w-3.5 h-3.5 sm:w-4 sm:h-4 flex-shrink-0" />
-                    <span className="break-all">[PLACEHOLDER — Phone]</span>
-                  </a>
-                  <a
-                    href="mailto:[PLACEHOLDER]"
-                    className="flex items-center gap-2 text-white/70 hover:text-orange-500 transition-colors text-sm sm:text-base py-1.5"
-                  >
-                    <Mail className="w-3.5 h-3.5 sm:w-4 sm:h-4 flex-shrink-0" />
-                    <span className="break-all">[PLACEHOLDER — Email]</span>
-                  </a>
-                </div>
+              <div className="space-y-4">
+                <InfoItem
+                  icon={MapPin}
+                  label={CONTACT.kampalaLabel}
+                  value={isConfirmed(CONTACT.kampalaAddress) ? CONTACT.kampalaAddress : "Operations in the Kampala / Kasangati area"}
+                />
+                <InfoItem
+                  icon={MapPin}
+                  label={CONTACT.mbararaLabel}
+                  value={isConfirmed(CONTACT.mbararaAddress) ? CONTACT.mbararaAddress : "Operations in Mbarara City"}
+                />
+                {contactMethods.map((item) => (
+                  <InfoItem key={item.label} icon={item.icon} label={item.label} value={item.value} />
+                ))}
+                {businessHours.length > 0 && (
+                  <InfoItem icon={Clock3} label="Business Hours" value={businessHours.join(" · ")} />
+                )}
               </div>
 
-              {/* Business Hours */}
-              <div className="mb-6 sm:mb-8">
-                <h3 className="text-lg sm:text-xl font-bold mb-3 sm:mb-4">
-                  Business Hours
-                </h3>
-                <div className="space-y-1.5 sm:space-y-2 text-white/70 text-sm sm:text-base">
-                  <p>Monday – Friday : [PLACEHOLDER]</p>
-                  <p>Saturday : [PLACEHOLDER]</p>
-                  <p className="text-white/50 text-xs sm:text-sm mt-1">Sunday & Public Holidays : Closed</p>
+              {contactMethods.length === 0 && (
+                <div className="mt-8 rounded-xl border border-white/15 bg-white/5 p-4 text-sm leading-relaxed text-white/70">
+                  Confirmed phone, WhatsApp and email details will appear here when supplied.
                 </div>
-              </div>
+              )}
 
-              {/* Stay Connected */}
-              <div>
-                <h3 className="text-lg sm:text-xl font-bold mb-4 sm:mb-4 italic">
-                  Stay Connected
-                </h3>
-                <div className="flex flex-wrap items-center gap-2 sm:gap-3">
-                  {["facebook", "twitter", "linkedin", "instagram", "youtube"].map(
-                    (social) => (
-                      <a
-                        key={social}
-                        href="#"
-                        className="w-9 h-9 sm:w-10 sm:h-10 bg-orange-500 rounded-full flex items-center justify-center text-white hover:bg-orange-600 transition-colors"
-                        aria-label={social}
-                      >
-                        <SocialIcon name={social} />
-                      </a>
-                    )
-                  )}
+              <div className="mt-8 border-t border-white/15 pt-6">
+                <div className="flex items-start gap-3 text-sm text-white/75">
+                  <Building2 className="mt-0.5 h-5 w-5 shrink-0 text-orange-400" aria-hidden="true" />
+                  <p>Services can be adapted to different industries, workforce sizes and operating environments.</p>
                 </div>
               </div>
             </div>
-          </div>
-        </div>
+          </aside>
 
-        {/* Mobile Decorative Elements */}
-        <div className="lg:hidden absolute left-0 bottom-0 w-32 h-32 bg-orange-500/5 rounded-full blur-2xl -z-10" />
-        <div className="lg:hidden absolute right-0 top-1/3 w-40 h-40 bg-navy/10 rounded-full blur-2xl -z-10" />
+          <Card>
+            <CardHeader>
+              <CardTitle>Send an Enquiry</CardTitle>
+              <CardDescription>
+                Complete the form below. Required fields are marked with an asterisk.
+              </CardDescription>
+            </CardHeader>
+            <CardContent>
+              <form onSubmit={handleSubmit} noValidate className="space-y-5">
+                <div className="grid gap-5 sm:grid-cols-2">
+                  <FormField label="Full Name" htmlFor="fullName" required error={errors.fullName}>
+                    <Input
+                      id="fullName"
+                      name="fullName"
+                      autoComplete="name"
+                      value={formData.fullName}
+                      onChange={(event) => updateField("fullName", event.target.value)}
+                      placeholder="Your full name"
+                      aria-invalid={Boolean(errors.fullName)}
+                      aria-describedby={errors.fullName ? "fullName-error" : undefined}
+                    />
+                  </FormField>
+                  <FormField label="Email Address" htmlFor="email" required error={errors.email}>
+                    <Input
+                      id="email"
+                      name="email"
+                      type="email"
+                      autoComplete="email"
+                      value={formData.email}
+                      onChange={(event) => updateField("email", event.target.value)}
+                      placeholder="you@organisation.com"
+                      aria-invalid={Boolean(errors.email)}
+                      aria-describedby={errors.email ? "email-error" : undefined}
+                    />
+                  </FormField>
+                </div>
+
+                <div className="grid gap-5 sm:grid-cols-2">
+                  <FormField label="Phone Number" htmlFor="phone">
+                    <Input
+                      id="phone"
+                      name="phone"
+                      type="tel"
+                      autoComplete="tel"
+                      value={formData.phone}
+                      onChange={(event) => updateField("phone", event.target.value)}
+                      placeholder="Optional"
+                    />
+                  </FormField>
+                  <FormField label="Organisation / Company" htmlFor="organisation">
+                    <Input
+                      id="organisation"
+                      name="organisation"
+                      autoComplete="organization"
+                      value={formData.organisation}
+                      onChange={(event) => updateField("organisation", event.target.value)}
+                      placeholder="Optional"
+                    />
+                  </FormField>
+                </div>
+
+                <FormField label="Service Interested In" htmlFor="service" required error={errors.service}>
+                  <Select value={formData.service} onValueChange={(value) => updateField("service", value)}>
+                    <SelectTrigger
+                      id="service"
+                      aria-label="Service interested in"
+                      aria-invalid={Boolean(errors.service)}
+                      aria-describedby={errors.service ? "service-error" : undefined}
+                    >
+                      <SelectValue placeholder="Select a service" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      {serviceOptions.map((service) => (
+                        <SelectItem key={service} value={service}>{service}</SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                </FormField>
+
+                <FormField label="Subject" htmlFor="subject" required error={errors.subject}>
+                  <Input
+                    id="subject"
+                    name="subject"
+                    value={formData.subject}
+                    onChange={(event) => updateField("subject", event.target.value)}
+                    placeholder="How can we help?"
+                    aria-invalid={Boolean(errors.subject)}
+                    aria-describedby={errors.subject ? "subject-error" : undefined}
+                  />
+                </FormField>
+
+                <FormField label="Message" htmlFor="message" required error={errors.message}>
+                  <Textarea
+                    id="message"
+                    name="message"
+                    value={formData.message}
+                    onChange={(event) => updateField("message", event.target.value)}
+                    placeholder="Tell us about your organisation, location and the support you need."
+                    aria-invalid={Boolean(errors.message)}
+                    aria-describedby={errors.message ? "message-error" : undefined}
+                  />
+                </FormField>
+
+                {status && (
+                  <div role="status" className="rounded-xl border border-amber-200 bg-amber-50 p-4 text-sm leading-relaxed text-amber-900">
+                    {status}
+                  </div>
+                )}
+
+                <Button type="submit" disabled={isSubmitting} className="w-full sm:w-auto">
+                  {isSubmitting ? (
+                    <><Loader2 className="h-4 w-4 animate-spin" aria-hidden="true" /> Checking form...</>
+                  ) : (
+                    <><Send className="h-4 w-4" aria-hidden="true" /> Send Message</>
+                  )}
+                </Button>
+              </form>
+            </CardContent>
+          </Card>
+        </div>
       </div>
     </section>
   );
 }
 
-function SocialIcon({ name }: { name: string }) {
-  const icons: Record<string, JSX.Element> = {
-    facebook: (
-      <svg className="w-3.5 h-3.5 sm:w-4 sm:h-4" fill="currentColor" viewBox="0 0 24 24">
-        <path d="M9.101 23.691v-7.98H6.627v-3.667h2.474v-1.58c0-4.085 1.848-5.978 5.858-5.978.401 0 .955.042 1.468.103a8.68 8.68 0 0 1 1.141.195v3.325a8.623 8.623 0 0 0-.653-.036 36.6 36.6 0 0 0-.733-.009c-.707 0-1.259.096-1.675.309a1.686 1.686 0 0 0-.679.622c-.258.42-.374.995-.374 1.752v1.297h3.919l-.386 2.103-.287 1.564h-3.246v8.245C19.396 23.238 24 18.179 24 12.044c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.628 3.874 10.35 9.101 11.647Z" />
-      </svg>
-    ),
-    twitter: (
-      <svg className="w-3.5 h-3.5 sm:w-4 sm:h-4" fill="currentColor" viewBox="0 0 24 24">
-        <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
-      </svg>
-    ),
-    linkedin: (
-      <svg className="w-3.5 h-3.5 sm:w-4 sm:h-4" fill="currentColor" viewBox="0 0 24 24">
-        <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
-      </svg>
-    ),
-    instagram: (
-      <svg className="w-3.5 h-3.5 sm:w-4 sm:h-4" fill="currentColor" viewBox="0 0 24 24">
-        <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z" />
-      </svg>
-    ),
-    youtube: (
-      <svg className="w-3.5 h-3.5 sm:w-4 sm:h-4" fill="currentColor" viewBox="0 0 24 24">
-        <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" />
-      </svg>
-    ),
-  };
+function FormField({
+  label,
+  htmlFor,
+  required = false,
+  error,
+  children,
+}: {
+  label: string;
+  htmlFor: string;
+  required?: boolean;
+  error?: string;
+  children: React.ReactNode;
+}) {
+  return (
+    <div className="space-y-2">
+      <Label htmlFor={htmlFor}>
+        {label}{required && <span className="ml-1 text-orange-500" aria-hidden="true">*</span>}
+        {required && <span className="sr-only"> (required)</span>}
+      </Label>
+      {children}
+      {error && <p id={`${htmlFor}-error`} className="text-sm text-red-600">{error}</p>}
+    </div>
+  );
+}
 
-  return icons[name] || null;
+function InfoItem({ icon: Icon, label, value }: { icon: typeof Phone; label: string; value: string }) {
+  return (
+    <div className="flex items-start gap-3 rounded-xl bg-white/5 p-4">
+      <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-orange-500 text-white">
+        <Icon className="h-5 w-5" aria-hidden="true" />
+      </div>
+      <div className="min-w-0">
+        <p className="text-xs font-semibold uppercase tracking-wide text-orange-300">{label}</p>
+        <p className="mt-1 break-words text-sm leading-relaxed text-white/85">{value}</p>
+      </div>
+    </div>
+  );
 }

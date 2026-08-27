@@ -1,13 +1,12 @@
 import Header from "@/components/Header";
 import PageBanner from "@/components/PageBanner";
 import Footer from "@/components/Footer";
-import Newsletter from "@/components/Newsletter";
 import ServicesDetail from "./ServicesDetail";
 
 export const metadata = {
-  title: "Our Services | NewMaster Occupational Health & Safety",
+  title: "Our Services",
   description:
-    "Explore our integrated occupational health, safety, environmental, training, compliance, wellbeing, consulting, and digital solutions for safer, healthier workplaces.",
+    "Explore occupational health services, safety and environmental consulting, and training from NewMaster Health and Safety.",
 };
 
 export default function ServicesPage() {
@@ -16,13 +15,16 @@ export default function ServicesPage() {
       <Header />
       <PageBanner
         title="Our Services"
+        description="Integrated occupational health, workplace safety, environmental consulting and practical training solutions."
+        image="/images/banners/services-safety-professional.jpg"
+        imageAlt="Workplace safety professional inspecting an industrial environment"
+        priority
         breadcrumbs={[
           { label: "Home", href: "/" },
           { label: "Services" },
         ]}
       />
       <ServicesDetail />
-      <Newsletter />
       <Footer />
     </main>
   );

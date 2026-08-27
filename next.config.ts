@@ -4,19 +4,32 @@ const nextConfig: NextConfig = {
   images: {
     remotePatterns: [
       {
-        protocol: 'https',
-        hostname: 'images.unsplash.com',
-        port: '',
-        pathname: '/**',
+        protocol: "https",
+        hostname: "images.unsplash.com",
+        pathname: "/**",
       },
       {
-        protocol: 'https',
-        hostname: 'plus.unsplash.com',
-        port: '',
-        pathname: '/**',
+        protocol: "https",
+        hostname: "plus.unsplash.com",
+        pathname: "/**",
       },
-      // Add other domains here if needed
     ],
+  },
+  async redirects() {
+    return [
+      { source: "/case-studies", destination: "/specialised-services", permanent: true },
+      {
+        source: "/case-studies/:slug",
+        destination: "/specialised-services/:slug",
+        permanent: true,
+      },
+      { source: "/podcast", destination: "/podcasts", permanent: true },
+      {
+        source: "/institute-of-health-and-safety",
+        destination: "/institute",
+        permanent: true,
+      },
+    ];
   },
 };
 
