@@ -3,13 +3,13 @@
 import { useState } from "react";
 import {
   Building2,
+  CheckCircle2,
   Clock3,
   Loader2,
   Mail,
   MapPin,
   MessageCircle,
   Phone,
-  Send,
 } from "lucide-react";
 import { CONTACT } from "@/lib/site";
 import { Button } from "@/components/ui/button";
@@ -72,11 +72,13 @@ export default function Contact() {
   const [errors, setErrors] = useState<FormErrors>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [status, setStatus] = useState("");
+  const [isSuccess, setIsSuccess] = useState(false);
 
   const updateField = (field: keyof FormData, value: string) => {
     setFormData((current) => ({ ...current, [field]: value }));
     setErrors((current) => ({ ...current, [field]: undefined }));
     setStatus("");
+    setIsSuccess(false);
   };
 
   const validate = () => {
@@ -107,15 +109,38 @@ export default function Contact() {
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     setStatus("");
+    setIsSuccess(false);
 
     if (!validate()) return;
 
     setIsSubmitting(true);
-    await new Promise((resolve) => window.setTimeout(resolve, 500));
-    setIsSubmitting(false);
-    setStatus(
-      "Our contact form is temporarily unavailable. Please use the contact details on this page to reach our team directly.",
-    );
+
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      });
+
+      if (!response.ok) {
+        const data = await response.json().catch(() => null);
+        throw new Error(
+          data?.error || "Something went wrong. Please try again later.",
+        );
+      }
+
+      setFormData(initialFormData);
+      setErrors({});
+      setIsSuccess(true);
+    } catch (error) {
+      const message =
+        error instanceof Error
+          ? error.message
+          : "Something went wrong. Please try again later.";
+      setStatus(message);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const contactMethods = [
@@ -229,183 +254,208 @@ export default function Contact() {
 
           <Card>
             <CardHeader>
-              <CardTitle>Send an Enquiry</CardTitle>
+              <CardTitle>{isSuccess ? "" : "Send an Enquiry" }</CardTitle>
               <CardDescription>
-                Complete the form below. Required fields are marked with an
-                asterisk.
+                {isSuccess ? "" : "Complete the form below. Required fields are marked with an asterisk."}
               </CardDescription>
             </CardHeader>
             <CardContent>
-              <form onSubmit={handleSubmit} noValidate className="space-y-5">
-                <div className="grid gap-5 sm:grid-cols-2">
-                  <FormField
-                    label="Full Name"
-                    htmlFor="fullName"
-                    required
-                    error={errors.fullName}>
-                    <Input
-                      id="fullName"
-                      name="fullName"
-                      autoComplete="name"
-                      value={formData.fullName}
-                      onChange={(event) =>
-                        updateField("fullName", event.target.value)
-                      }
-                      placeholder="Your full name"
-                      aria-invalid={Boolean(errors.fullName)}
-                      aria-describedby={
-                        errors.fullName ? "fullName-error" : undefined
-                      }
-                    />
-                  </FormField>
-                  <FormField
-                    label="Email Address"
-                    htmlFor="email"
-                    required
-                    error={errors.email}>
-                    <Input
-                      id="email"
-                      name="email"
-                      type="email"
-                      autoComplete="email"
-                      value={formData.email}
-                      onChange={(event) =>
-                        updateField("email", event.target.value)
-                      }
-                      placeholder="you@organisation.com"
-                      aria-invalid={Boolean(errors.email)}
-                      aria-describedby={
-                        errors.email ? "email-error" : undefined
-                      }
-                    />
-                  </FormField>
-                </div>
-
-                <div className="grid gap-5 sm:grid-cols-2">
-                  <FormField label="Phone Number" htmlFor="phone">
-                    <Input
-                      id="phone"
-                      name="phone"
-                      type="tel"
-                      autoComplete="tel"
-                      value={formData.phone}
-                      onChange={(event) =>
-                        updateField("phone", event.target.value)
-                      }
-                      placeholder="Optional"
-                    />
-                  </FormField>
-                  <FormField
-                    label="Organisation / Company"
-                    htmlFor="organisation">
-                    <Input
-                      id="organisation"
-                      name="organisation"
-                      autoComplete="organization"
-                      value={formData.organisation}
-                      onChange={(event) =>
-                        updateField("organisation", event.target.value)
-                      }
-                      placeholder="Optional"
-                    />
-                  </FormField>
-                </div>
-
-                <FormField
-                  label="Service Interested In"
-                  htmlFor="service"
-                  required
-                  error={errors.service}>
-                  <Select
-                    value={formData.service}
-                    onValueChange={(value) => updateField("service", value)}>
-                    <SelectTrigger
-                      id="service"
-                      aria-label="Service interested in"
-                      aria-invalid={Boolean(errors.service)}
-                      aria-describedby={
-                        errors.service ? "service-error" : undefined
-                      }>
-                      <SelectValue placeholder="Select a service" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      {serviceOptions.map((service) => (
-                        <SelectItem key={service} value={service}>
-                          {service}
-                        </SelectItem>
-                      ))}
-                    </SelectContent>
-                  </Select>
-                </FormField>
-
-                <FormField
-                  label="Subject"
-                  htmlFor="subject"
-                  required
-                  error={errors.subject}>
-                  <Input
-                    id="subject"
-                    name="subject"
-                    value={formData.subject}
-                    onChange={(event) =>
-                      updateField("subject", event.target.value)
-                    }
-                    placeholder="How can we help?"
-                    aria-invalid={Boolean(errors.subject)}
-                    aria-describedby={
-                      errors.subject ? "subject-error" : undefined
-                    }
-                  />
-                </FormField>
-
-                <FormField
-                  label="Message"
-                  htmlFor="message"
-                  required
-                  error={errors.message}>
-                  <Textarea
-                    id="message"
-                    name="message"
-                    value={formData.message}
-                    onChange={(event) =>
-                      updateField("message", event.target.value)
-                    }
-                    placeholder="Tell us about your organisation, location and the support you need."
-                    aria-invalid={Boolean(errors.message)}
-                    aria-describedby={
-                      errors.message ? "message-error" : undefined
-                    }
-                  />
-                </FormField>
-
-                {status && (
-                  <div
-                    role="status"
-                    className="rounded-xl border border-amber-200 bg-amber-50 p-4 text-sm leading-relaxed text-amber-900">
-                    {status}
+              {isSuccess ? (
+                <div className="flex flex-col items-center justify-center py-10 text-center">
+                  <div className="mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-orange-500/10">
+                    <CheckCircle2 className="h-9 w-9 text-orange-500" aria-hidden="true" />
                   </div>
-                )}
+                  <h3 className="text-xl font-bold text-navy">
+                    Message Sent Successfully!
+                  </h3>
+                  <p className="mt-3 max-w-md text-sm leading-relaxed text-gray-600">
+                    Thank you for reaching out. Your enquiry has been received
+                    and a member of the NewMaster team will be in touch
+                    shortly.
+                  </p>
+                  <Button
+                    type="button"
+                    className="mt-8 bg-transparent text-navy ring-1 ring-navy/20 hover:bg-navy/5"
+                    onClick={() => {
+                      setIsSuccess(false);
+                      setFormData(initialFormData);
+                      setErrors({});
+                      setStatus("");
+                    }}>
+                    Send Another Enquiry
+                  </Button>
+                </div>
+              ) : (
+                <form onSubmit={handleSubmit} noValidate className="space-y-5">
+                  <div className="grid gap-5 sm:grid-cols-2">
+                    <FormField
+                      label="Full Name"
+                      htmlFor="fullName"
+                      required
+                      error={errors.fullName}>
+                      <Input
+                        id="fullName"
+                        name="fullName"
+                        autoComplete="name"
+                        value={formData.fullName}
+                        onChange={(event) =>
+                          updateField("fullName", event.target.value)
+                        }
+                        placeholder="Your full name"
+                        aria-invalid={Boolean(errors.fullName)}
+                        aria-describedby={
+                          errors.fullName ? "fullName-error" : undefined
+                        }
+                      />
+                    </FormField>
+                    <FormField
+                      label="Email Address"
+                      htmlFor="email"
+                      required
+                      error={errors.email}>
+                      <Input
+                        id="email"
+                        name="email"
+                        type="email"
+                        autoComplete="email"
+                        value={formData.email}
+                        onChange={(event) =>
+                          updateField("email", event.target.value)
+                        }
+                        placeholder="you@organisation.com"
+                        aria-invalid={Boolean(errors.email)}
+                        aria-describedby={
+                          errors.email ? "email-error" : undefined
+                        }
+                      />
+                    </FormField>
+                  </div>
 
-                <Button
-                  type="submit"
-                  disabled={isSubmitting}
-                  className="w-full sm:w-auto">
-                  {isSubmitting ? (
-                    <>
-                      <Loader2
-                        className="h-4 w-4 animate-spin"
-                        aria-hidden="true"
-                      />{" "}
-                      Checking form...
-                    </>
-                  ) : (
-                    <>
-                      <Send className="h-4 w-4" aria-hidden="true" /> Send
-                      Message
-                    </>
+                  <div className="grid gap-5 sm:grid-cols-2">
+                    <FormField label="Phone Number" htmlFor="phone">
+                      <Input
+                        id="phone"
+                        name="phone"
+                        type="tel"
+                        autoComplete="tel"
+                        value={formData.phone}
+                        onChange={(event) =>
+                          updateField("phone", event.target.value)
+                        }
+                        placeholder="Optional"
+                      />
+                    </FormField>
+                    <FormField
+                      label="Organisation / Company"
+                      htmlFor="organisation">
+                      <Input
+                        id="organisation"
+                        name="organisation"
+                        autoComplete="organization"
+                        value={formData.organisation}
+                        onChange={(event) =>
+                          updateField("organisation", event.target.value)
+                        }
+                        placeholder="Optional"
+                      />
+                    </FormField>
+                  </div>
+
+                  <FormField
+                    label="Service Interested In"
+                    htmlFor="service"
+                    required
+                    error={errors.service}>
+                    <Select
+                      value={formData.service}
+                      onValueChange={(value) => updateField("service", value)}>
+                      <SelectTrigger
+                        id="service"
+                        aria-label="Service interested in"
+                        aria-invalid={Boolean(errors.service)}
+                        aria-describedby={
+                          errors.service ? "service-error" : undefined
+                        }>
+                        <SelectValue placeholder="Select a service" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        {serviceOptions.map((service) => (
+                          <SelectItem key={service} value={service}>
+                            {service}
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                  </FormField>
+
+                  <FormField
+                    label="Subject"
+                    htmlFor="subject"
+                    required
+                    error={errors.subject}>
+                    <Input
+                      id="subject"
+                      name="subject"
+                      value={formData.subject}
+                      onChange={(event) =>
+                        updateField("subject", event.target.value)
+                      }
+                      placeholder="How can we help?"
+                      aria-invalid={Boolean(errors.subject)}
+                      aria-describedby={
+                        errors.subject ? "subject-error" : undefined
+                      }
+                    />
+                  </FormField>
+
+                  <FormField
+                    label="Message"
+                    htmlFor="message"
+                    required
+                    error={errors.message}>
+                    <Textarea
+                      id="message"
+                      name="message"
+                      value={formData.message}
+                      onChange={(event) =>
+                        updateField("message", event.target.value)
+                      }
+                      placeholder="Tell us about your organisation, location and the support you need."
+                      aria-invalid={Boolean(errors.message)}
+                      aria-describedby={
+                        errors.message ? "message-error" : undefined
+                      }
+                    />
+                  </FormField>
+
+                  {status && (
+                    <div
+                      role="alert"
+                      className="rounded-xl border border-red-200 bg-red-50 p-4 text-sm leading-relaxed text-red-900">
+                      {status}
+                    </div>
                   )}
-                </Button>
-              </form>
+
+                  <Button
+                    type="submit"
+                    disabled={isSubmitting}
+                    className="w-full sm:w-auto">
+                    {isSubmitting ? (
+                      <>
+                        <Loader2
+                          className="h-4 w-4 animate-spin"
+                          aria-hidden="true"
+                        />{" "}
+                        Sending message...
+                      </>
+                    ) : (
+                      <>
+                        Send Message
+                      </>
+                    )}
+                  </Button>
+                </form>
+              )}
             </CardContent>
           </Card>
         </div>
