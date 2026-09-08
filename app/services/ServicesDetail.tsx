@@ -1,12 +1,12 @@
 "use client";
 
 import Image from "next/image";
-import { CheckCircle2, Heart, Shield, GraduationCap } from "lucide-react";
+import { CheckCircle2, Heart, Shield, GraduationCap, Siren, ClipboardCheck } from "lucide-react";
 import {
   serviceCategories
 } from "@/lib/services";
 
-const icons = [Heart, Shield, GraduationCap];
+const icons = [Heart, Shield, GraduationCap, Siren, ClipboardCheck];
 
 export default function ServicesDetail() {
   return (

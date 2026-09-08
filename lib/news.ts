@@ -52,7 +52,7 @@ export const newsArticles: NewsArticle[] = [
         <li>Hearing, vision, respiratory and other targeted surveillance</li>
         <li>Clearer occupational medical records over time</li>
       </ul>
-      <p>When findings are acted on — through follow-up, work adjustments or improved controls — examinations become a prevention tool rather than a paperwork exercise.</p>
+      <p>When findings are acted on through follow-up, work adjustments or improved controls examinations become a prevention tool rather than a paperwork exercise.</p>
       <p>This article is educational content and does not report a specific NewMaster event or client result.</p>
     `,
   },

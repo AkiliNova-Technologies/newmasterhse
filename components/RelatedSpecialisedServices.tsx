@@ -23,14 +23,14 @@ export default function RelatedSpecialisedServices({
         <div className="text-center max-w-2xl mx-auto mb-10 sm:mb-12">
           <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-navy mb-3 leading-tight">
             Related{" "}
-            <span className="text-orange-500 italic">Specialised Services</span>
+            <span className="text-orange-500 italic">Projects</span>
           </h2>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
           {services.map((service) => (
             <Link
               key={service.slug}
-              href={`/specialised-services/${service.slug}`}
+              href={`/projects`}
               className="group bg-white rounded-2xl overflow-hidden shadow-card hover:shadow-card-hover transition-all duration-300 h-full flex flex-col"
             >
               <div className="relative w-full h-56 overflow-hidden">
@@ -54,7 +54,7 @@ export default function RelatedSpecialisedServices({
                   {service.description}
                 </p>
                 <span className="inline-flex items-center gap-2 text-orange-500 font-semibold text-sm">
-                  View service
+                  View project
                   <ArrowRight className="w-4 h-4" />
                 </span>
               </div>

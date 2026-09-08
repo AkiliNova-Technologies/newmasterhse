@@ -16,7 +16,7 @@ const features = [
     icon: Users,
     title: "Practical workplace solutions",
     description:
-      "Recommendations are designed for real sites, shifts and operating constraints — not generic templates that stay on paper.",
+      "Recommendations are designed for real sites, shifts and operating constraints not generic templates that stay on paper.",
   },
   {
     icon: TrendingUp,

@@ -18,7 +18,7 @@ export const podcastEpisodes: PodcastEpisode[] = [
     title: "Building a Strong Workplace Safety Culture",
     category: "Safety Culture",
     description:
-      "A conversation about how leadership, reporting and everyday habits shape whether people work safely — or only look compliant.",
+      "A conversation about how leadership, reporting and everyday habits shape whether people work safely or only look compliant.",
     date: "8 August 2026",
     duration: "32 min",
     image: images.podcast,
@@ -51,7 +51,7 @@ export const podcastEpisodes: PodcastEpisode[] = [
     title: "Managing Health and Safety in Growing African Businesses",
     category: "Safety Leadership",
     description:
-      "How expanding operations across sites and regions can outpace health and safety systems — and what leaders can do about it.",
+      "How expanding operations across sites and regions can outpace health and safety systems and what leaders can do about it.",
     date: "27 June 2026",
     duration: "34 min",
     image: images.whyChooseUs,

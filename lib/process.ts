@@ -18,7 +18,7 @@ export const processSteps = [
     title: "Develop",
     subtitle: "the Solution",
     description:
-      "We design a practical programme — medical services, audits, training, on-site support or a combination — matched to your risks and operating constraints.",
+      "We design a practical programme medical services, audits, training, on-site support or a combination matched to your risks and operating constraints.",
   },
   {
     number: "04",

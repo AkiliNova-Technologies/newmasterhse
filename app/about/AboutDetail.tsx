@@ -36,7 +36,7 @@ export default function AboutDetail() {
               </p>
               <p>
                 Every workplace has different risks, workforce characteristics and operating
-                constraints. Services are therefore adapted to the organisation — whether the
+                constraints. Services are therefore adapted to the organisation  whether the
                 need is medical examinations, a safety audit, training, occupational hygiene or
                 an on-site Medical Clinic.
               </p>

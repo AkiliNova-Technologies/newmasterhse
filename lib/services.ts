@@ -94,6 +94,45 @@ export const serviceCategories: ServiceCategory[] = [
     outcome:
       "A workforce with practical skills to recognise hazards, respond to emergencies and apply safer working methods.",
   },
+  {
+    id: "emergency-preparedness",
+    title: "Emergency Preparedness",
+    shortTitle: "Emergency Preparedness",
+    description:
+      "Prepare organisations to respond effectively to workplace emergencies through response planning, drills, simulations and first aid room setup, so teams can act quickly and reduce harm when incidents occur.",
+    image: images.fireTraining,
+    includes: [
+      "Emergency response plans",
+      "Health and safety drills planning",
+      "Emergency simulations",
+      "Mass casualty preparedness",
+      "First aid room setup",
+    ],
+    outcome:
+      "Organisations that can respond quickly, safely and effectively to emergencies, reducing injuries, losses and downtime.",
+  },
+  {
+    id: "consulting-services",
+    title: "Consulting Services",
+    shortTitle: "Consulting Services",
+    description:
+      "Strengthen health and safety management through inspections, policy development, strategy planning and operational support that helps organisations meet compliance obligations and manage workplace risk.",
+    image: images.safetyConsulting,
+    includes: [
+      "HSE Inspections",
+      "Ambulance Inspections",
+      "First aid box inspections",
+      "OSH policy development",
+      "Health and safety strategy",
+      "Safety manuals",
+      "HSE SOP development",
+      "Risk registers",
+      "Business health assessments",
+      "Workplace health promotion",
+    ],
+    outcome:
+      "Clearer compliance, stronger safety management systems and practical policies that support day-to-day operations.",
+  },
 ];
 
 export const laboratoryInvestigations = [

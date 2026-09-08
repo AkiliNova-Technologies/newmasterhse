@@ -43,6 +43,16 @@ export const images = {
   newsCulture: "/images/news/stronger-safety-culture.jpg",
   newsRisk:
     "https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=1200&h=800&fit=crop",
+  projects:
+    "https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=1200&h=900&fit=crop",
+  programmes:
+    "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=1200&h=800&fit=crop",
+  school:
+    "https://images.unsplash.com/photo-1580582932707-520aed937b7b?w=1200&h=900&fit=crop",
+  travel:
+    "https://images.unsplash.com/photo-1506521781263-d8422e82f27a?w=1200&h=900&fit=crop",
+  safetyShop:
+    "https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?w=1200&h=900&fit=crop",
   newsAssessment:
     "https://images.unsplash.com/photo-1581092160562-40aa08e78837?w=1200&h=800&fit=crop",
   newsFire:

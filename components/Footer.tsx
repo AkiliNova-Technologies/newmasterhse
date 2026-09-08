@@ -15,7 +15,7 @@ const serviceLinks = [
     href: "/services#safety-environmental-consulting",
   },
   { name: "Training & Certification", href: "/services#training-certification" },
-  { name: "Specialised Services", href: "/specialised-services" },
+  { name: "Projects", href: "/projects" },
 ];
 
 const resourceLinks = [
@@ -113,14 +113,38 @@ export default function Footer() {
           </div>
 
           <div className="lg:col-span-2">
-            <h4 className="text-base sm:text-lg font-bold mb-5 sm:mb-6">Training</h4>
+            <h4 className="text-base sm:text-lg font-bold mb-5 sm:mb-6">Programmes</h4>
             <ul className="space-y-3 sm:space-y-4 mb-6">
               <li>
                 <Link
-                  href="/institute"
+                  href="/programmes/institute"
                   className="text-white/70 hover:text-orange-500 transition-colors text-sm sm:text-base inline-block py-1"
                 >
                   {INSTITUTE_NAME}
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/programmes/st-atanansi-occupational-medical-clinic"
+                  className="text-white/70 hover:text-orange-500 transition-colors text-sm sm:text-base inline-block py-1"
+                >
+                  St Atanansi Occupational Medical Clinic
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/programmes/flavia"
+                  className="text-white/70 hover:text-orange-500 transition-colors text-sm sm:text-base inline-block py-1"
+                >
+                  Flavia
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/programmes/safety-shop"
+                  className="text-white/70 hover:text-orange-500 transition-colors text-sm sm:text-base inline-block py-1"
+                >
+                  Safety Shop
                 </Link>
               </li>
             </ul>

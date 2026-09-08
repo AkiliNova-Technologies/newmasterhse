@@ -10,7 +10,7 @@ const caseStudies = [
     slug: "project-title-one",
     title: "[PROJECT TITLE]",
     description:
-      "[Brief description of the project — what challenge the client faced, what NewMaster did, and the outcome achieved.]",
+      "[Brief description of the project what challenge the client faced, what NewMaster did, and the outcome achieved.]",
     image:
       "https://images.unsplash.com/photo-1553877522-43269d4ea984?w=600&h=400&fit=crop",
     location: "[LOCATION]",
@@ -23,7 +23,7 @@ const caseStudies = [
     slug: "project-title-two",
     title: "[PROJECT TITLE]",
     description:
-      "[Brief description of the project — what challenge the client faced, what NewMaster did, and the outcome achieved.]",
+      "[Brief description of the project what challenge the client faced, what NewMaster did, and the outcome achieved.]",
     image:
       "https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?w=600&h=400&fit=crop",
     location: "[LOCATION]",

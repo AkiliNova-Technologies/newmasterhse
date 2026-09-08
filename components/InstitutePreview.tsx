@@ -28,19 +28,19 @@ export default function InstitutePreview() {
             </h2>
             <p className="text-gray-600 text-sm sm:text-base leading-relaxed mb-6">
               The Institute is NewMaster&apos;s professional training arm. We deliver practical
-              health and safety programmes for workers, supervisors and organisations — from first
+              health and safety programmes for workers, supervisors and organisations from first
               aid and fire safety to HSE awareness, risk assessment and ISO management system
               awareness. We do not claim university-level accreditation.
             </p>
             <div className="flex items-center gap-3">
               <Link
-                href="/institute"
+                href="/programmes/institute"
                 className="inline-flex items-center justify-center px-6 py-3 bg-orange-500 text-white font-semibold rounded-full hover:bg-orange-600 transition-colors text-sm sm:text-base"
               >
                 Explore the Institute
               </Link>
               <Link
-                href="/institute"
+                href="/programmes/institute"
                 className="w-12 h-12 bg-navy rounded-full flex items-center justify-center text-white"
                 aria-label="Explore the NewMaster Institute of Health and Safety"
               >

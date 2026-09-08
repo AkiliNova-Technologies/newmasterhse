@@ -17,18 +17,13 @@ const nextConfig: NextConfig = {
   },
   async redirects() {
     return [
-      { source: "/case-studies", destination: "/specialised-services", permanent: true },
-      {
-        source: "/case-studies/:slug",
-        destination: "/specialised-services/:slug",
-        permanent: true,
-      },
+      { source: "/case-studies", destination: "/projects", permanent: true },
+      { source: "/case-studies/:slug", destination: "/projects", permanent: true },
+      { source: "/specialised-services", destination: "/projects", permanent: true },
+      { source: "/specialised-services/:slug", destination: "/projects", permanent: true },
       { source: "/podcast", destination: "/podcasts", permanent: true },
-      {
-        source: "/institute-of-health-and-safety",
-        destination: "/institute",
-        permanent: true,
-      },
+      { source: "/institute-of-health-and-safety", destination: "/programmes/institute", permanent: true },
+      { source: "/institute", destination: "/programmes/institute", permanent: true },
     ];
   },
 };

@@ -17,8 +17,17 @@ const navigation: NavItem[] = [
   { name: "Home", href: "/" },
   { name: "About", href: "/about" },
   { name: "Services", href: "/services" },
-  { name: "Specialised Services", href: "/specialised-services" },
-  { name: "Institute", href: "/institute" },
+  { name: "Projects", href: "/projects" },
+  {
+    name: "Programmes",
+    href: "/programmes",
+    children: [
+      { name: "Institute", href: "/programmes/institute" },
+      { name: "St Atanansi Occupational Medical Clinic", href: "/programmes/st-atanansi-occupational-medical-clinic" },
+      { name: "Flavia", href: "/programmes/flavia" },
+      { name: "Safety Shop", href: "/programmes/safety-shop" },
+    ],
+  },
   {
     name: "Insights",
     href: "/insights",
@@ -151,7 +160,7 @@ export default function Header() {
                       />
                     </Link>
                     <div className="invisible opacity-0 group-hover:visible group-hover:opacity-100 group-focus-within:visible group-focus-within:opacity-100 transition-all absolute left-0 top-full pt-3">
-                      <div className="bg-white rounded-xl shadow-xl border border-gray-100 py-2 min-w-[10rem]">
+                      <div className="bg-white rounded-xl shadow-xl border border-gray-100 py-2 min-w-[14rem]">
                         {item.children.map((child) => (
                           <Link
                             key={child.name}

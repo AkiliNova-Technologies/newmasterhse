@@ -7,7 +7,7 @@ import Team from "@/components/Team";
 export const metadata = {
   title: "About Us",
   description:
-    "Learn about NewMaster Health and Safety — our vision, mission, core goal, values and the industries we are equipped to support across Uganda and Africa.",
+    "Learn about NewMaster Health and Safety our vision, mission, core goal, values and the industries we are equipped to support across Uganda and Africa.",
 };
 
 export default function AboutPage() {
