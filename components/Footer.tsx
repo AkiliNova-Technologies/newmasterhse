@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { FOOTER_BLURB, INSTITUTE_NAME } from "@/lib/site";
 
 const companyLinks = [
@@ -49,13 +50,19 @@ export default function Footer() {
       <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-14 lg:py-16 diagonal-pattern">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-8 gap-8 sm:gap-10 lg:gap-8">
           <div className="lg:col-span-2 text-left">
-            <Link href="/" className="inline-flex items-center gap-3 mb-6">
-              <div className="w-10 h-10 sm:w-12 sm:h-12 bg-white rounded-full flex items-center justify-center flex-shrink-0">
-                <div className="w-5 h-5 sm:w-6 sm:h-6 bg-orange-500 rounded-sm transform rotate-12" />
-              </div>
-              <span className="text-xl sm:text-2xl font-bold">
-                New<span className="text-orange-500">Master</span>
-              </span>
+            <Link
+              href="/"
+              className="inline-flex mb-6"
+              aria-label="NewMaster Health and Safety home"
+            >
+              <Image
+                src="/brand/newmaster-wordmark-light.png"
+                alt="NewMaster Health and Safety"
+                width={168}
+                height={33}
+                sizes="(max-width: 639px) 130px, 168px"
+                className="w-[130px] h-auto sm:w-[168px]"
+              />
             </Link>
 
             <p className="text-white/70 mb-6 leading-relaxed text-sm sm:text-base max-w-md">
@@ -129,22 +136,6 @@ export default function Footer() {
                   className="text-white/70 hover:text-orange-500 transition-colors text-sm sm:text-base inline-block py-1"
                 >
                   St Atanansi Occupational Medical Clinic
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/programmes/flavia"
-                  className="text-white/70 hover:text-orange-500 transition-colors text-sm sm:text-base inline-block py-1"
-                >
-                  Flavia
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/programmes/safety-shop"
-                  className="text-white/70 hover:text-orange-500 transition-colors text-sm sm:text-base inline-block py-1"
-                >
-                  Safety Shop
                 </Link>
               </li>
             </ul>

@@ -1,7 +1,5 @@
 import {
   GraduationCap,
-  Layers,
-  ShoppingBag,
   Stethoscope,
   type LucideIcon,
 } from "lucide-react";
@@ -65,8 +63,8 @@ export const programmes: Programme[] = [
     bannerTitle: "Institute",
     bannerDescription:
       "Practical workplace health and safety training for workers, supervisors and organisational teams.",
-    bannerImage: "/images/banners/institute-training.jpg",
-    bannerImageAlt: "Employees taking part in professional workplace training",
+    bannerImage: images.bannerInstitute,
+    bannerImageAlt: "Ugandan professionals taking part in workplace health and safety training",
     description:
       "Practical workplace health, safety and environmental training delivered by the NewMaster Institute of Health & Safety.",
     icon: GraduationCap,
@@ -87,9 +85,9 @@ export const programmes: Programme[] = [
     bannerTitle: "St Atanansi Occupational Medical Clinic",
     bannerDescription:
       "Occupational and workplace health services delivered as a programme area within NewMaster Health and Safety.",
-    bannerImage: "/images/banners/specialised-medical-support.jpg",
+    bannerImage: images.bannerClinic,
     bannerImageAlt:
-      "Medical professional providing occupational health support",
+      "Ugandan clinician providing an occupational health consultation",
     description:
       "Occupational medical clinic providing clinical health services and workplace medical support.",
     image: images.medicalClinic,
@@ -173,104 +171,6 @@ export const programmes: Programme[] = [
       primaryHref: "/contact",
       secondaryLabel: "Explore Occupational Health Services",
       secondaryHref: "/services#occupational-health",
-    },
-  },
-  {
-    id: "flavia",
-    slug: "flavia",
-    title: "Flavia",
-    bannerTitle: "Flavia",
-    bannerDescription:
-      "A programme area operated within the NewMaster Health and Safety ecosystem.",
-    bannerImage: "/images/banners/services-safety-professional.jpg",
-    bannerImageAlt: "NewMaster Health and Safety professionals at work",
-    description:
-      "One of the programme areas operated within NewMaster Health and Safety.",
-    icon: Layers,
-    // TODO: Replace the placeholder copy below with approved programme
-    // content once NewMaster Health and Safety supplies Flavia's official
-    // description, purpose and any platform destination.
-    sections: [
-      {
-        kind: "intro",
-        label: "About Flavia",
-        title: "Flavia",
-        description:
-          "Flavia is one of the programme areas operated by NewMaster Health and Safety.",
-      },
-      {
-        kind: "prose",
-        label: "Programme Information",
-        title: "Further details coming soon",
-        description:
-          "Detailed information about this programme is being prepared. Please check back soon, or contact our team for more information.",
-      },
-    ],
-    cta: {
-      title: "Learn more about Flavia",
-      description:
-        "Contact our team for information about this programme and how it operates within NewMaster Health and Safety.",
-      primaryLabel: "Talk to Our Team",
-      primaryHref: "/contact",
-      secondaryLabel: "Back to Programmes",
-      secondaryHref: "/programmes",
-    },
-  },
-  {
-    id: "safety-shop",
-    slug: "safety-shop",
-    title: "Safety Shop",
-    bannerTitle: "Safety Shop",
-    bannerDescription:
-      "Access to health and safety products, equipment and supplies associated with NewMaster Health and Safety.",
-    bannerImage: "/images/banners/services-safety-professional.jpg",
-    bannerImageAlt: "NewMaster Health and Safety workplace safety support",
-    description: "Workplace safety equipment and resources.",
-    image: images.safetyShop,
-    imageAlt: "Personal protective equipment and safety products",
-    icon: ShoppingBag,
-    sections: [
-      {
-        kind: "intro",
-        label: "About Safety Shop",
-        title: "Safety Shop",
-        description: [
-          "Safety Shop is a NewMaster Health and Safety programme providing access to health and safety products, equipment and supplies.",
-          "Products support the safety equipment and supplies that organisations need for workplace health and safety — from personal protective equipment to first aid and fire safety equipment.",
-        ],
-        image: images.safetyShop,
-        imageAlt: "Personal protective equipment and safety products",
-      },
-      {
-        kind: "items",
-        label: "Product Areas",
-        title: "Safety equipment and supplies",
-        items: [
-          "Safety equipment",
-          "First aid supplies",
-          "Fire safety equipment",
-          "Personal protective equipment (PPE)",
-          "Workplace safety products",
-          "Inspection-related products",
-          "Emergency preparedness supplies",
-        ],
-      },
-      {
-        kind: "prose",
-        label: "How Safety Shop Connects to Our Services",
-        title: "Products that support safer workplaces",
-        description:
-          "Safety Shop products complement NewMaster's services and projects — first aid supplies support first aid room setup and first aid box inspections, fire safety equipment supports fire risk assessments and extinguisher checks, and PPE supports workplace safety training.",
-      },
-    ],
-    cta: {
-      title: "Equip your workplace for safety",
-      description:
-        "Enquire about safety products and supplies for your organisation, or explore our services for support that complements them.",
-      primaryLabel: "Enquire About Safety Products",
-      primaryHref: "/contact",
-      secondaryLabel: "Back to Programmes",
-      secondaryHref: "/programmes",
     },
   },
 ];

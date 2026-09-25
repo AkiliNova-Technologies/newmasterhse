@@ -57,7 +57,7 @@ export default function AboutDetail() {
           </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-7 lg:gap-8 mb-16 sm:mb-20">
+        <div className="grid grid-cols-1 gap-6 sm:gap-7 md:grid-cols-2 lg:grid-cols-3 lg:gap-8 mb-16 sm:mb-20">
           <div className="bg-navy rounded-2xl p-6 sm:p-8 text-white diagonal-pattern">
             <div className="w-12 h-12 bg-orange-500 rounded-xl flex items-center justify-center mb-4">
               <Eye className="w-6 h-6 text-white" />

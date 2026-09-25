@@ -1,5 +1,9 @@
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
+## Content management
+
+News and Insights are read from Sanity project `oqdatg5j`, dataset `production`. Start the separate editor Studio with `npm run studio`; deploy it with `npm run studio:deploy`. See [the editor handover guide](./ADMIN_HANDOVER.md) for access, publishing, and environment setup. The public site uses no Sanity write token.
+
 ## Getting Started
 
 First, run the development server:

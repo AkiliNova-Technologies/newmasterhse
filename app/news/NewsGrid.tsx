@@ -3,9 +3,22 @@
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, Calendar } from "lucide-react";
-import { newsArticles } from "@/lib/news";
+import { useMemo, useState } from "react";
+import { newsArticles, newsCategories } from "@/lib/news";
+import { articleCategoryLabel } from "@/lib/articleCategories";
 
 export default function NewsGrid() {
+  const [selectedCategory, setSelectedCategory] = useState("All Categories");
+  const articles = useMemo(
+    () =>
+      selectedCategory === "All Categories"
+        ? newsArticles
+        : newsArticles.filter(
+            (article) => articleCategoryLabel(article.category) === selectedCategory,
+          ),
+    [selectedCategory],
+  );
+
   return (
     <section className="relative bg-white py-16 sm:py-20 lg:py-28">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -14,13 +27,29 @@ export default function NewsGrid() {
           general guidance and do not describe specific NewMaster client engagements unless
           clearly stated.
         </p>
+        <div className="flex flex-wrap justify-center gap-2 mb-12">
+          {newsCategories.map((category) => (
+            <button
+              key={category}
+              type="button"
+              onClick={() => setSelectedCategory(category)}
+              className={`min-h-11 px-4 py-2 rounded-full text-xs font-medium sm:text-sm ${
+                selectedCategory === category
+                  ? "bg-orange-500 text-white"
+                  : "bg-gray-100 text-navy hover:bg-gray-200"
+              }`}
+            >
+              {category}
+            </button>
+          ))}
+        </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
-          {newsArticles.map((post) => (
+          {articles.map((post) => (
             <article
               key={post.slug}
               className="bg-white rounded-2xl overflow-hidden shadow-card hover:shadow-card-hover transition-all group flex flex-col"
             >
-              <div className="relative h-48 overflow-hidden">
+              <div className="relative h-48 overflow-hidden sm:h-52">
                 <Image
                   src={post.image}
                   alt={post.title}
@@ -28,10 +57,10 @@ export default function NewsGrid() {
                   className="object-cover group-hover:scale-110 transition-transform duration-500"
                 />
                 <span className="absolute top-4 left-4 px-4 py-2 bg-navy text-white text-xs font-semibold rounded-full">
-                  {post.category}
+                  {articleCategoryLabel(post.category)}
                 </span>
               </div>
-              <div className="p-6 flex flex-col flex-grow">
+              <div className="flex flex-grow flex-col p-5 sm:p-6">
                 <div className="flex items-center gap-2 text-gray-500 text-sm mb-3">
                   <Calendar className="w-4 h-4 text-orange-500" />
                   {post.date}

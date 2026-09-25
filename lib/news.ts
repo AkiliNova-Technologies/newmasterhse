@@ -1,4 +1,6 @@
 import { images } from "@/lib/images";
+import type { ArticleBody } from "@/lib/sanity";
+import { articleCategoryLabel } from "@/lib/articleCategories";
 
 export type NewsArticle = {
   slug: string;
@@ -8,7 +10,7 @@ export type NewsArticle = {
   date: string;
   readTime: string;
   image: string;
-  content: string;
+  content: ArticleBody;
 };
 
 export const newsArticles: NewsArticle[] = [
@@ -20,17 +22,20 @@ export const newsArticles: NewsArticle[] = [
     category: "Workplace Safety",
     date: "12 August 2026",
     readTime: "6 min read",
-    image: images.newsEmergency,
-    content: `
-      <p>Emergency preparedness is most effective when it is planned before an incident happens. Workplaces that wait until a fire, medical emergency or chemical release occurs often lose valuable minutes because roles are unclear and equipment is not ready.</p>
-      <h2>Start with realistic scenarios</h2>
-      <p>Identify the emergencies that are most likely in your operations: fire, medical emergencies, confined space incidents, vehicle accidents, chemical exposure or severe weather. The right plan depends on the work you actually do, not a generic template.</p>
-      <h2>Make roles visible</h2>
-      <p>Employees should know who raises the alarm, who guides evacuation, who provides first aid and who contacts emergency services. Simple role cards and regular drills help people act under pressure.</p>
-      <h2>Check equipment and access</h2>
-      <p>First aid kits, fire extinguishers, assembly points and emergency exits only help if they are accessible, inspected and understood. Preparedness includes maintenance, not only documentation.</p>
-      <p>This article is educational content intended to support workplace health and safety discussions. It does not describe a specific NewMaster Health and Safety client engagement.</p>
-    `,
+    image: "/images/news/workplace-emergency-preparedness-v2.png",
+    content: [
+      { _type: "block", style: "h2", children: [{ _type: "span", text: "Prepare before an incident" }] },
+      { _type: "block", children: [{ _type: "span", text: "Emergency preparedness is most effective when it is planned before an incident happens. Workplaces that wait until a fire, medical emergency or chemical release occurs often lose valuable minutes because roles are unclear and equipment is not ready." }] },
+      { _type: "block", style: "h2", children: [{ _type: "span", text: "Start with realistic scenarios" }] },
+      { _type: "block", children: [{ _type: "span", text: "Identify the emergencies most likely in your operations: fire, medical emergencies, confined-space incidents, vehicle accidents, chemical exposure or severe weather. The right plan depends on the work you actually do, not a generic template." }] },
+      { _type: "block", style: "h2", children: [{ _type: "span", text: "Make roles visible" }] },
+      { _type: "block", children: [{ _type: "span", text: "Employees should know who raises the alarm, who guides evacuation, who provides first aid and who contacts emergency services. Simple role cards and regular drills help people act under pressure." }] },
+      { _type: "block", style: "h2", children: [{ _type: "span", text: "Check equipment and access" }] },
+      { _type: "block", children: [{ _type: "span", text: "First aid kits, fire extinguishers, assembly points and emergency exits only help if they are accessible, inspected and understood. Preparedness includes maintenance, not only documentation." }] },
+      { _type: "block", style: "h2", children: [{ _type: "span", text: "Keep the plan current" }] },
+      { _type: "block", children: [{ _type: "span", text: "Review arrangements after drills, incidents, workplace changes and new risks. Update contact information, equipment checks and assigned roles so the plan remains useful when it is needed." }] },
+      { _type: "importantNote", title: "Important note", body: [{ _type: "block", children: [{ _type: "span", text: "This article is educational content intended to support workplace health and safety discussions. It does not describe a specific NewMaster Health and Safety client engagement." }] }] },
+    ],
   },
   {
     slug: "why-periodic-medical-examinations-matter",
@@ -140,7 +145,7 @@ export const newsArticles: NewsArticle[] = [
 
 export const newsCategories = [
   "All Categories",
-  ...Array.from(new Set(newsArticles.map((article) => article.category))),
+  ...Array.from(new Set(newsArticles.map((article) => articleCategoryLabel(article.category)))),
 ];
 
 export function getNewsArticle(slug: string) {

@@ -1,6 +1,7 @@
 import Header from "@/components/Header";
 import PageBanner from "@/components/PageBanner";
 import Footer from "@/components/Footer";
+import { images } from "@/lib/images";
 import AboutDetail from "./AboutDetail";
 import Team from "@/components/Team";
 
@@ -17,8 +18,8 @@ export default function AboutPage() {
       <PageBanner
         title="About Us"
         description="Meet the purpose, values and multidisciplinary approach behind NewMaster Health and Safety."
-        image="/images/banners/about-african-team.jpg"
-        imageAlt="African professionals collaborating in a modern workplace"
+        image={images.bannerAbout}
+        imageAlt="Ugandan occupational health, safety, environmental and training professionals collaborating"
         priority
         breadcrumbs={[
           { label: "Home", href: "/" },

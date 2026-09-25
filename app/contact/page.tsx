@@ -1,6 +1,7 @@
 import Header from "@/components/Header";
 import PageBanner from "@/components/PageBanner";
 import Footer from "@/components/Footer";
+import { images } from "@/lib/images";
 import Contact from "@/components/Contact";
 
 export const metadata = {
@@ -16,8 +17,8 @@ export default function ContactPage() {
       <PageBanner
         title="Contact Us"
         description="Talk to our team about occupational health services, workplace training, safety audits or specialised support."
-        image="/images/banners/contact-consultation.jpg"
-        imageAlt="African professionals discussing workplace health and safety support"
+        image={images.bannerContact}
+        imageAlt="Ugandan professional advisor meeting a client"
         priority
         breadcrumbs={[
           { label: "Home", href: "/" },

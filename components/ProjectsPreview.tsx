@@ -25,18 +25,19 @@ export default function ProjectsPreview() {
           </h2>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-7">
+        <div className="grid grid-cols-1 gap-6 sm:gap-7 md:grid-cols-2 xl:grid-cols-3">
           {featured.map((project) => (
             <article
               key={project.id}
               className="bg-navy-light/50 rounded-2xl overflow-hidden border border-white/10 flex flex-col"
             >
-              <div className="relative h-48">
+              <div className="relative h-48 sm:h-52">
                 <Image
                   src={project.image}
                   alt={project.title}
                   fill
                   className="object-cover"
+                  sizes="(max-width: 767px) 100vw, (max-width: 1279px) 50vw, 33vw"
                 />
               </div>
               <div className="p-6 flex flex-col flex-grow">

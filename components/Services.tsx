@@ -6,7 +6,6 @@ import Image from "next/image";
 import { serviceCategories } from "@/lib/services";
 
 const icons = [Heart, Shield, GraduationCap, Siren, ClipboardCheck];
-
 export default function Services() {
   return (
     <section className="relative bg-gray-light py-16 sm:py-16 lg:py-28 overflow-hidden">
@@ -26,7 +25,7 @@ export default function Services() {
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-7 lg:gap-8">
-          {serviceCategories.map((service, index) => {
+          {serviceCategories.slice(0, 3).map((service, index) => {
             const Icon = icons[index] ?? Shield;
             return (
               <div

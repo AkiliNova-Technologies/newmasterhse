@@ -1,6 +1,7 @@
 import Header from "@/components/Header";
 import PageBanner from "@/components/PageBanner";
 import Footer from "@/components/Footer";
+import { images } from "@/lib/images";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { programmes } from "@/lib/programmes";
@@ -8,7 +9,7 @@ import { programmes } from "@/lib/programmes";
 export const metadata = {
   title: "Programmes",
   description:
-    "Explore NewMaster Health and Safety programmes — the Institute, St Atanansi Occupational Medical Clinic, Flavia and Safety Shop.",
+    "Explore NewMaster Health and Safety programmes — the Institute and St Atanansi Occupational Medical Clinic.",
 };
 
 export default function ProgrammesPage() {
@@ -18,8 +19,8 @@ export default function ProgrammesPage() {
       <PageBanner
         title="Programmes"
         description="Training, medical services and safety solutions through our dedicated programme areas."
-        image="/images/banners/institute-training.jpg"
-        imageAlt="NewMaster Health and Safety programme delivery"
+        image={images.bannerProgrammes}
+        imageAlt="Ugandan adults taking part in a health and safety programme"
         priority
         breadcrumbs={[
           { label: "Home", href: "/" },
@@ -29,9 +30,6 @@ export default function ProgrammesPage() {
       <section className="bg-white py-16 sm:py-20 lg:py-28">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-3xl mx-auto mb-12 sm:mb-16">
-            <div className="section-label text-navy/70 mb-4">
-              Our Programmes
-            </div>
             <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-navy mb-4 sm:mb-6 leading-tight">
               Dedicated areas of expertise
             </h2>

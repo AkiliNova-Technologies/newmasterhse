@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Menu, X, Phone, Mail, ChevronDown } from "lucide-react";
@@ -24,8 +25,6 @@ const navigation: NavItem[] = [
     children: [
       { name: "Institute", href: "/programmes/institute" },
       { name: "St Atanansi Occupational Medical Clinic", href: "/programmes/st-atanansi-occupational-medical-clinic" },
-      { name: "Flavia", href: "/programmes/flavia" },
-      { name: "Safety Shop", href: "/programmes/safety-shop" },
     ],
   },
   {
@@ -116,26 +115,16 @@ export default function Header() {
       <nav className="relative" aria-label="Main">
         <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16 sm:h-20">
-            <Link href="/" className="flex items-center gap-2 sm:gap-3">
-              <div
-                className={cn(
-                  "w-10 h-10 sm:w-12 sm:h-12 rounded-full flex items-center justify-center transition-colors flex-shrink-0",
-                  isScrolled
-                    ? "bg-navy"
-                    : "bg-white/10 backdrop-blur-sm border border-white/30",
-                )}
-              >
-                <div className="w-5 h-5 sm:w-6 sm:h-6 bg-orange-500 rounded-sm transform rotate-12" />
-              </div>
-              <span
-                className={cn(
-                  "text-xl sm:text-2xl font-bold transition-colors whitespace-nowrap",
-                  isScrolled ? "text-navy" : "text-white",
-                )}
-              >
-                New<span className="text-orange-500">Master</span>
-              </span>
-              <span className="sr-only">NewMaster Health and Safety home</span>
+            <Link href="/" className="flex items-center" aria-label="NewMaster Health and Safety home">
+              <Image
+                src={isScrolled ? "/brand/newmaster-wordmark-dark.png" : "/brand/newmaster-wordmark-light.png"}
+                alt="NewMaster Health and Safety"
+                width={168}
+                height={33}
+                sizes="(max-width: 639px) 130px, 168px"
+                className="w-[130px] h-auto sm:w-[168px]"
+                priority
+              />
             </Link>
 
             <div className="hidden lg:flex items-center gap-5 xl:gap-7">
@@ -215,7 +204,7 @@ export default function Header() {
 
             <button
               className={cn(
-                "lg:hidden p-1.5 sm:p-2 rounded-md transition-colors",
+                "lg:hidden flex h-11 w-11 items-center justify-center rounded-md transition-colors",
                 isScrolled
                   ? "text-navy hover:bg-gray-100"
                   : "text-white hover:bg-white/10",
@@ -252,7 +241,7 @@ export default function Header() {
                         <button
                           type="button"
                           className={cn(
-                            "w-full flex items-center justify-between border-l-2 font-medium py-2.5 sm:py-3 px-3 rounded-r-md text-base sm:text-lg",
+                            "flex min-h-11 w-full items-center justify-between rounded-r-md border-l-2 px-3 py-2.5 text-base font-medium sm:py-3 sm:text-lg",
                             isItemActive(item)
                               ? "border-orange-500 bg-orange-500/10 text-orange-500"
                               : isScrolled
@@ -280,7 +269,7 @@ export default function Header() {
                             <Link
                               href={item.href}
                               className={cn(
-                                "block border-l-2 py-2 px-3 rounded-r-md text-sm",
+                                "block min-h-11 rounded-r-md border-l-2 px-3 py-2.5 text-sm",
                                 isActive(item.href)
                                   ? "border-orange-500 bg-orange-500/10 text-orange-500"
                                   : isScrolled
@@ -297,7 +286,7 @@ export default function Header() {
                                 key={child.name}
                                 href={child.href}
                                 className={cn(
-                                  "block border-l-2 py-2 px-3 rounded-r-md text-sm",
+                                  "block min-h-11 rounded-r-md border-l-2 px-3 py-2.5 text-sm",
                                   isActive(child.href)
                                     ? "border-orange-500 bg-orange-500/10 text-orange-500"
                                     : isScrolled
@@ -317,7 +306,7 @@ export default function Header() {
                       <Link
                         href={item.href}
                         className={cn(
-                          "block border-l-2 font-medium transition-colors py-2.5 sm:py-3 px-3 rounded-r-md text-base sm:text-lg",
+                          "block min-h-11 rounded-r-md border-l-2 px-3 py-2.5 text-base font-medium transition-colors sm:py-3 sm:text-lg",
                           isItemActive(item)
                             ? "border-orange-500 bg-orange-500/10 text-orange-500"
                             : isScrolled

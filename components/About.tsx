@@ -48,7 +48,7 @@ export default function About() {
           <div className="space-y-4 sm:space-y-5 lg:space-y-6">
             <div className="section-label text-navy/70 text-sm sm:text-base">Who We Are</div>
 
-            <h2 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold leading-tight">
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl xl:text-4xl font-bold leading-tight">
               <span className="text-orange-500 italic block sm:inline">Protecting People.</span>
               <span className="text-navy block sm:inline sm:ml-2">Strengthening Organisations.</span>
             </h2>
@@ -87,17 +87,26 @@ export default function About() {
               className="opacity-90"
               aria-hidden
             >
-              <rect x="98" y="0" width="4" height="100" fill="#1a2b4a" />
-              <circle cx="100" cy="160" r="55" stroke="#1a2b4a" strokeWidth="4" fill="none" />
-              <circle cx="100" cy="160" r="40" stroke="#1a2b4a" strokeWidth="2" fill="none" opacity="0.4" />
-              <path d="M100 105 L108 130 L100 125 L92 130 Z" fill="#f97316" />
-              <path d="M100 215 L108 190 L100 195 L92 190 Z" fill="#1a2b4a" />
-              <path d="M45 160 L70 152 L65 160 L70 168 Z" fill="#1a2b4a" opacity="0.6" />
-              <path d="M155 160 L130 152 L135 160 L130 168 Z" fill="#1a2b4a" opacity="0.6" />
-              <circle cx="100" cy="160" r="8" fill="#f97316" />
-              <circle cx="100" cy="160" r="4" fill="white" />
-              <circle cx="100" cy="250" r="12" fill="#1a2b4a" opacity="0.2" />
-              <circle cx="100" cy="250" r="6" fill="#f97316" />
+              <path d="M100 18V55" stroke="#1a2b4a" strokeWidth="4" strokeLinecap="round" />
+              <circle cx="100" cy="12" r="6" fill="#f97316" />
+              <path
+                d="M100 52L158 74V132C158 169 134 202 100 218C66 202 42 169 42 132V74L100 52Z"
+                fill="#1a2b4a"
+              />
+              <path
+                d="M100 67L144 84V130C144 157 127 182 100 196C73 182 56 157 56 130V84L100 67Z"
+                stroke="white"
+                strokeWidth="2"
+                strokeOpacity="0.28"
+              />
+              <path d="M76 132L92 148L126 110" stroke="#f97316" strokeWidth="10" strokeLinecap="round" strokeLinejoin="round" />
+              <circle cx="166" cy="84" r="12" fill="#f97316" />
+              <path d="M166 104V170" stroke="#1a2b4a" strokeWidth="3" strokeLinecap="round" opacity="0.25" />
+              <path d="M34 189H76" stroke="#f97316" strokeWidth="4" strokeLinecap="round" />
+              <path d="M34 202H112" stroke="#1a2b4a" strokeWidth="4" strokeLinecap="round" opacity="0.18" />
+              <path d="M34 215H94" stroke="#1a2b4a" strokeWidth="4" strokeLinecap="round" opacity="0.18" />
+              <circle cx="132" cy="250" r="28" fill="#f97316" fillOpacity="0.12" />
+              <circle cx="132" cy="250" r="12" fill="#f97316" />
             </svg>
           </div>
         </div>

@@ -16,6 +16,7 @@ import {
   ArrowRight
 } from "lucide-react";
 import { useState, useEffect } from "react";
+import ArticleBody from "@/components/ArticleBody";
 
 interface Insight {
   slug: string;
@@ -212,17 +213,7 @@ export default function InsightDetails({ insight }: { insight: Insight }) {
           </div>
 
           {/* Content - Responsive Typography */}
-          <article 
-            className="prose prose-sm sm:prose-base lg:prose-lg max-w-none 
-              prose-headings:text-navy prose-headings:font-bold 
-              prose-p:text-gray-600 prose-p:text-sm sm:prose-p:text-base 
-              prose-strong:text-navy prose-ul:list-disc prose-li:text-gray-600 
-              prose-li:text-sm sm:prose-li:text-base
-              prose-headings:text-xl sm:prose-headings:text-2xl lg:prose-headings:text-3xl
-              prose-h2:mt-8 sm:prose-h2:mt-10 lg:prose-h2:mt-12
-              prose-p:leading-relaxed"
-            dangerouslySetInnerHTML={{ __html: insight.content }}
-          />
+          <article><ArticleBody body={insight.content} /></article>
 
           {/* Tags - Responsive */}
           <div className="mt-10 sm:mt-12 pt-6 sm:pt-8 border-t border-gray-200">

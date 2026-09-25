@@ -51,6 +51,7 @@ type FormData = {
   service: string;
   subject: string;
   message: string;
+  website: string;
 };
 
 type FormErrors = Partial<Record<keyof FormData, string>>;
@@ -63,6 +64,7 @@ const initialFormData: FormData = {
   service: "",
   subject: "",
   message: "",
+  website: "",
 };
 
 function isConfirmed(value: string) {
@@ -268,12 +270,11 @@ export default function Contact() {
                     <CheckCircle2 className="h-9 w-9 text-orange-500" aria-hidden="true" />
                   </div>
                   <h3 className="text-xl font-bold text-navy">
-                    Message Sent Successfully!
+                    Your enquiry has been sent
                   </h3>
                   <p className="mt-3 max-w-md text-sm leading-relaxed text-gray-600">
-                    Thank you for reaching out. Your enquiry has been received
-                    and a member of the NewMaster team will be in touch
-                    shortly.
+                    Thank you for reaching out. The NewMaster team will review
+                    your enquiry and respond as soon as possible.
                   </p>
                   <Button
                     type="button"
@@ -289,6 +290,20 @@ export default function Contact() {
                 </div>
               ) : (
                 <form onSubmit={handleSubmit} noValidate className="space-y-5">
+                  <div
+                    className="absolute -left-[10000px] top-auto h-px w-px overflow-hidden"
+                    aria-hidden="true"
+                  >
+                    <Label htmlFor="website">Website</Label>
+                    <Input
+                      id="website"
+                      name="website"
+                      tabIndex={-1}
+                      autoComplete="off"
+                      value={formData.website}
+                      onChange={(event) => updateField("website", event.target.value)}
+                    />
+                  </div>
                   <div className="grid gap-5 sm:grid-cols-2">
                     <FormField
                       label="Full Name"

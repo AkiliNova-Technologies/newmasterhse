@@ -1,0 +1,12 @@
+{
+  "name": "newmaster-content-studio",
+  "private": true,
+  "scripts": {
+    "dev": "sanity dev",
+    "deploy": "sanity deploy"
+  },
+  "dependencies": {
+    "sanity": "^6.15.0",
+    "styled-components": "^6.1.15"
+  }
+}

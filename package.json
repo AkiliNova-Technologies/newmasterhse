@@ -6,7 +6,9 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "studio": "npm --prefix sanity run dev",
+    "studio:deploy": "npm --prefix sanity run deploy"
   },
   "dependencies": {
     "@radix-ui/react-select": "^2.3.7",

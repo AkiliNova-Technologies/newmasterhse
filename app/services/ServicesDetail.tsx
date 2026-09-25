@@ -50,9 +50,6 @@ export default function ServicesDetail() {
                   </div>
 
                   <div className={`w-full ${index % 2 === 1 ? "lg:order-1" : ""}`}>
-                    <div className="section-label text-navy/70 text-sm sm:text-base mb-3 sm:mb-4">
-                      Service {String(index + 1).padStart(2, "0")}
-                    </div>
                     <h3 className="text-xl sm:text-2xl lg:text-3xl font-bold text-navy mb-3 sm:mb-4 leading-tight">
                       {service.title}
                     </h3>
@@ -65,10 +62,10 @@ export default function ServicesDetail() {
                         What We Offer
                       </h4>
                       <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-3">
-                        {service.includes.map((item) => (
+                        {service.includes.slice(0, 8).map((item) => (
                           <div key={item} className="flex items-start gap-1.5 sm:gap-2">
                             <CheckCircle2 className="w-4 h-4 sm:w-5 sm:h-5 text-orange-500 flex-shrink-0 mt-0.5" />
-                            <span className="text-xs sm:text-sm text-gray-600">{item}</span>
+                            <span className="text-xs sm:text-sm text-gray-600 line-clamp-1">{item}</span>
                           </div>
                         ))}
                       </div>

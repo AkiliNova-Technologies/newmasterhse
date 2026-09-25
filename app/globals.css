@@ -43,6 +43,65 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+/* Keep keyboard navigation clear without changing the established visual language. */
+:where(a, button, input, select, textarea):focus-visible {
+  outline: 2px solid var(--orange);
+  outline-offset: 3px;
+}
+
+/* Shared, safe Portable Text presentation for News and Insights detail pages. */
+.article-body {
+  max-width: 46rem;
+  color: #4b5563;
+  font-size: 1.0625rem;
+  line-height: 1.8;
+}
+
+.article-body > * + * { margin-top: 1.5rem; }
+.article-body p { margin: 0; }
+.article-body h2 {
+  margin-top: 3rem;
+  color: var(--navy);
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  font-weight: 700;
+  line-height: 1.25;
+}
+.article-body h3 {
+  margin-top: 2.25rem;
+  color: var(--navy);
+  font-size: clamp(1.2rem, 2.5vw, 1.5rem);
+  font-weight: 700;
+  line-height: 1.35;
+}
+.article-body a { color: #c2410c; font-weight: 600; text-decoration: underline; text-underline-offset: 3px; }
+.article-body a:hover { color: #9a3412; }
+.article-list { margin: 1.5rem 0 0; padding-left: 1.4rem; list-style: disc; }
+.article-list-number { list-style: decimal; }
+.article-list li { padding-left: 0.35rem; }
+.article-list li + li { margin-top: 0.65rem; }
+.article-note {
+  margin-top: 2rem;
+  border-left: 4px solid var(--orange);
+  border-radius: 0 0.75rem 0.75rem 0;
+  background: #fff7ed;
+  padding: 1.25rem 1.5rem;
+  color: #713f12;
+}
+.article-note-title { margin: 0 0 0.5rem; color: var(--navy); font-weight: 700; }
+.article-note p + p { margin-top: 0.75rem; }
+
+@media (max-width: 639px) {
+  .article-body {
+    font-size: 1rem;
+    line-height: 1.75;
+  }
+
+  .article-body > * + * { margin-top: 1.25rem; }
+  .article-body h2 { margin-top: 2.5rem; }
+  .article-body h3 { margin-top: 2rem; }
+  .article-note { padding: 1rem 1.125rem; }
+}
+
 /* Custom diagonal pattern for navy backgrounds */
 .diagonal-pattern {
   background-image: repeating-linear-gradient(
@@ -240,5 +299,4 @@ html {
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
-
 

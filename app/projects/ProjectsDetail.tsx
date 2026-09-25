@@ -71,9 +71,6 @@ export default function ProjectsDetail() {
                     index % 2 === 1 ? "lg:order-1" : ""
                   }`}
                 >
-                  <div className="section-label text-navy/70 text-sm sm:text-base mb-3 sm:mb-4">
-                    Project {String(index + 1).padStart(2, "0")}
-                  </div>
                   <h3 className="text-xl sm:text-2xl lg:text-3xl font-bold text-navy mb-3 sm:mb-4 leading-tight">
                     {project.title}
                   </h3>
@@ -88,7 +85,7 @@ export default function ProjectsDetail() {
                       What the project covers
                     </h4>
                     <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-3 list-none">
-                      {project.areas.map((item) => (
+                      {project.areas.slice(0,6).map((item) => (
                         <li key={item} className="flex items-start gap-1.5 sm:gap-2">
                           <CheckCircle2
                             className="w-4 h-4 sm:w-5 sm:h-5 text-orange-500 flex-shrink-0 mt-0.5"

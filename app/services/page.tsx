@@ -1,6 +1,7 @@
 import Header from "@/components/Header";
 import PageBanner from "@/components/PageBanner";
 import Footer from "@/components/Footer";
+import { images } from "@/lib/images";
 import ServicesDetail from "./ServicesDetail";
 
 export const metadata = {
@@ -16,8 +17,8 @@ export default function ServicesPage() {
       <PageBanner
         title="Our Services"
         description="Integrated occupational health, workplace safety, environmental consulting and practical training solutions."
-        image="/images/banners/services-safety-professional.jpg"
-        imageAlt="Workplace safety professional inspecting an industrial environment"
+        image={images.bannerServices}
+        imageAlt="Ugandan safety professionals conducting a workplace inspection"
         priority
         breadcrumbs={[
           { label: "Home", href: "/" },

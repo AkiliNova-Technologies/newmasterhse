@@ -1,70 +1,78 @@
 /** Curated Unsplash imagery: African professionals and workplace health & safety settings. */
 
 export const images = {
+  bannerAbout: "/images/banners/about-uganda-hse-team.png",
+  bannerServices: "/images/banners/services-uganda-workplace-safety.png",
+  bannerProjects: "/images/banners/projects-uganda-community-programme.png",
+  bannerProgrammes: "/images/banners/programmes-uganda-health-safety-programme.png",
+  bannerInstitute: "/images/banners/institute-uganda-hse-training.png",
+  bannerClinic: "/images/banners/clinic-uganda-occupational-health.png",
+  bannerInsights: "/images/banners/insights-uganda-hse-professionals.png",
+  bannerNews: "/images/banners/news-uganda-workplace-engagement.png",
+  bannerPodcasts: "/images/banners/podcasts-uganda-hse-discussion.png",
+  bannerContact: "/images/banners/contact-uganda-professional-consultation.png",
   hero:
-    "https://images.unsplash.com/photo-1531482615713-2afd69097998?w=1200&h=900&fit=crop",
+    "/images/stock/ugandan-occupational-health-safety.png",
   aboutTeam:
-    "https://images.unsplash.com/photo-1531482615713-2afd69097998?w=1200&h=900&fit=crop",
+    "/images/stock/ugandan-occupational-health-safety.png",
   aboutHandshake: "/images/about-handshake.jpg",
   industries:
     "https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=1200&h=1200&fit=crop",
-  whyChooseUs: "/images/news/stronger-safety-culture.jpg",
+  whyChooseUs: "/images/banners/about-uganda-hse-team.png",
   contact:
     "https://images.unsplash.com/photo-1600880292089-90a7e086ee0c?w=1200&h=900&fit=crop",
   institute:
-    "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=1200&h=800&fit=crop",
+    "/images/stock/ugandan-safety-training.png",
   occupationalHealth:
-    "https://images.unsplash.com/photo-1666214280557-f1b5022eb634?w=1200&h=900&fit=crop",
+    "/images/stock/ugandan-workplace-health-screening.png",
   safetyConsulting:
-    "https://images.unsplash.com/photo-1581092160562-40aa08e78837?w=1200&h=900&fit=crop",
+    "/images/stock/ugandan-safety-environmental-inspection.png",
   environmental:
-    "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=1200&h=900&fit=crop",
+    "/images/stock/ugandan-safety-environmental-inspection.png",
   training:
-    "https://images.unsplash.com/photo-1544531586-fde5298cdd40?w=1200&h=900&fit=crop",
+    "/images/stock/ugandan-safety-training.png",
   medicalClinic:
-    "https://images.unsplash.com/photo-1579684385127-1ef15d508118?w=1200&h=900&fit=crop",
+    "/images/stock/ugandan-workplace-health-screening.png",
   healthCamp:
-    "https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=1200&h=900&fit=crop",
+    "/images/stock/ugandan-workplace-health-screening.png",
   remoteSite:
-    "https://images.unsplash.com/photo-1541888946425-d81bb19240f5?w=1200&h=900&fit=crop",
+    "/images/projects/hesdep-community-safety-uganda.png",
   preDeployment:
-    "https://images.unsplash.com/photo-1638202993928-7267aad84c31?w=1200&h=900&fit=crop",
+    "/images/stock/ugandan-workplace-health-screening.png",
   vaccination:
-    "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=1200&h=900&fit=crop",
+    "/images/stock/ugandan-workplace-health-screening.png",
   hygiene:
-    "https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=1200&h=900&fit=crop",
+    "/images/stock/ugandan-safety-environmental-inspection.png",
   wellness:
-    "https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=1200&h=900&fit=crop",
+    "/images/stock/ugandan-workplace-health-screening.png",
   fireTraining:
-    "https://images.unsplash.com/photo-1594737625785-a6cbdabd333c?w=1200&h=800&fit=crop",
+    "/images/stock/ugandan-safety-training.png",
   newsEmergency: "/images/news/workplace-emergency-preparedness.jpg",
   newsMedical:
-    "https://images.unsplash.com/photo-1666214280557-f1b5022eb634?w=1200&h=800&fit=crop",
+    "/images/stock/ugandan-workplace-health-screening.png",
   newsCulture: "/images/news/stronger-safety-culture.jpg",
   newsRisk:
-    "https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=1200&h=800&fit=crop",
+    "/images/stock/ugandan-occupational-health-safety.png",
   projects:
-    "https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=1200&h=900&fit=crop",
+    "/images/stock/ugandan-occupational-health-safety.png",
   programmes:
-    "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=1200&h=800&fit=crop",
+    "/images/stock/ugandan-safety-training.png",
   school:
-    "https://images.unsplash.com/photo-1580582932707-520aed937b7b?w=1200&h=900&fit=crop",
+    "/images/projects/school-safety-uganda.png",
   travel:
-    "https://images.unsplash.com/photo-1506521781263-d8422e82f27a?w=1200&h=900&fit=crop",
-  safetyShop:
-    "https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?w=1200&h=900&fit=crop",
+    "/images/projects/travel-safe-uganda.png",
   newsAssessment:
-    "https://images.unsplash.com/photo-1581092160562-40aa08e78837?w=1200&h=800&fit=crop",
+    "/images/stock/ugandan-safety-environmental-inspection.png",
   newsFire:
-    "https://images.unsplash.com/photo-1590494165264-1ebe3602eb80?w=1200&h=800&fit=crop",
+    "/images/banners/news-uganda-workplace-engagement.png",
   podcast:
-    "https://images.unsplash.com/photo-1478737270239-2f02b77fc618?w=1200&h=800&fit=crop",
+    "/images/banners/podcasts-uganda-hse-discussion.png",
   professionals:
-    "https://images.unsplash.com/photo-1589156280159-27698a70f29e?w=800&h=1000&fit=crop",
+    "/images/stock/ugandan-occupational-health-safety.png",
   consultants:
-    "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=800&h=1000&fit=crop",
+    "/images/stock/ugandan-safety-environmental-inspection.png",
   medicalPros:
-    "https://images.unsplash.com/photo-1584515933487-779824d29309?w=800&h=1000&fit=crop",
+    "/images/stock/ugandan-workplace-health-screening.png",
   trainers:
-    "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=800&h=1000&fit=crop",
+    "/images/stock/ugandan-safety-training.png",
 } as const;

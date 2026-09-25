@@ -1,6 +1,7 @@
 import Header from "@/components/Header";
 import PageBanner from "@/components/PageBanner";
 import Footer from "@/components/Footer";
+import { images } from "@/lib/images";
 import ProjectsDetail from "./ProjectsDetail";
 
 export const metadata = {
@@ -16,8 +17,8 @@ export default function ProjectsPage() {
       <PageBanner
         title="Our Projects"
         description="Practical health and safety initiatives designed to prevent risks, strengthen preparedness, and create safer communities, workplaces, schools, and journeys."
-        image="/images/banners/services-safety-professional.jpg"
-        imageAlt="NewMaster Health and Safety team delivering project support"
+        image={images.bannerProjects}
+        imageAlt="Ugandan project team delivering a community health and safety programme"
         priority
         breadcrumbs={[
           { label: "Home", href: "/" },

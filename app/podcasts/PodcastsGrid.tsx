@@ -30,7 +30,7 @@ export default function PodcastsGrid() {
               key={item}
               type="button"
               onClick={() => setCategory(item)}
-              className={`px-4 py-2 rounded-full text-xs sm:text-sm font-medium ${
+              className={`min-h-11 px-4 py-2 rounded-full text-xs font-medium sm:text-sm ${
                 category === item
                   ? "bg-orange-500 text-white"
                   : "bg-gray-100 text-navy hover:bg-gray-200"
@@ -52,7 +52,7 @@ export default function PodcastsGrid() {
                 key={episode.slug}
                 className="bg-white rounded-2xl overflow-hidden shadow-card flex flex-col"
               >
-                <div className="relative h-48">
+                <div className="relative h-48 sm:h-52">
                   <Image
                     src={episode.image}
                     alt={episode.title}
@@ -63,7 +63,7 @@ export default function PodcastsGrid() {
                     Episode {episode.episode}
                   </span>
                 </div>
-                <div className="p-6 flex flex-col flex-grow">
+                <div className="flex flex-grow flex-col p-5 sm:p-6">
                   <p className="text-orange-500 text-xs font-semibold mb-2">{episode.category}</p>
                   <h2 className="text-lg font-bold text-navy mb-3">{episode.title}</h2>
                   <p className="text-gray-600 text-sm mb-4 flex-grow">{episode.description}</p>

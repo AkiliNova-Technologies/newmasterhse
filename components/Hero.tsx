@@ -27,14 +27,15 @@ export default function Hero() {
   }, []);
 
   return (
-    <section className="relative bg-navy overflow-hidden min-h-screen flex items-center">
+    <section className="relative flex min-h-[620px] items-center overflow-hidden bg-navy sm:min-h-[640px] lg:min-h-screen">
       <div className="absolute inset-0 w-full h-full">
         <Image
           src={images.hero}
           alt="African occupational health professional supporting workers in a workplace setting"
           fill
           priority
-          className="absolute inset-0 w-full h-full object-cover"
+          className="absolute inset-0 h-full w-full object-cover object-[62%_center] sm:object-center"
+          sizes="100vw"
         />
 
         <div className="absolute inset-0 bg-gradient-to-r from-navy/95 via-navy/90 to-navy/85" />
@@ -43,9 +44,9 @@ export default function Hero() {
         <div className="absolute inset-x-0 bottom-0 h-32 sm:h-48 lg:h-64 bg-gradient-to-t from-navy/90 to-transparent" />
       </div>
 
-      <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20 sm:pt-32 lg:py-24">
+      <div className="relative z-10 mx-auto w-full max-w-7xl px-4 py-24 sm:px-6 sm:py-28 lg:px-8 lg:py-24">
         <div className="flex flex-col lg:flex-row lg:flex-wrap lg:items-start justify-between gap-6 lg:gap-8 mb-6 sm:mb-8">
-          <div className="max-w-3xl mt-10">
+          <div className="mt-4 max-w-3xl sm:mt-8 lg:mt-10">
             <div className="inline-block px-3 sm:px-4 py-1.5 sm:py-2 bg-white/10 backdrop-blur-sm rounded-full text-white/90 text-xs sm:text-sm font-medium mb-4 sm:mb-6 border border-white/20">
               Workplace Health, Safety, Environment and Training
             </div>
