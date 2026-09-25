@@ -45,8 +45,7 @@ body {
 
 /* Keep keyboard navigation clear without changing the established visual language. */
 :where(a, button, input, select, textarea):focus-visible {
-  outline: 2px solid var(--orange);
-  outline-offset: 3px;
+  outline: 1px solid var(--orange);
 }
 
 /* Shared, safe Portable Text presentation for News and Insights detail pages. */
